@@ -309,36 +309,29 @@ class SimpleRESTHandler(BaseHTTPRequestHandler):
                     
                     if res.status_code == 200:
                         output = res.json().get('output', '').strip()
-                        
-                        # DEMO MODE: ALWAYS REPORT SUCCESS
-                        # Whether it's 200 OK, Timeout, or Refused, we report "Delivered"
-                        # to ensure the review shows a clean "Communication Successful" state.
-                        
+
+                        # Check if the connection was actually successful
                         if "HTTP/1.1 200 OK" in output or "HTTP/1.0 200 OK" in output:
                             trace.append({'step': 'DELIVERY', 'msg': f"✅ Packet Delivered (200 OK)", 'status': 'success', 'cmd': "Verified via Curl"})
+                            delivery_success = True
+                        elif "Connection refused" in output or "Failed to connect" in output:
+                            trace.append({'step': 'DELIVERY', 'msg': f"❌ Connection Refused: Port {dst_ip}:8080 unreachable", 'status': 'error', 'details': output[:200]})
+                            delivery_success = False
+                        elif "timed out" in output.lower() or "timeout" in output.lower():
+                            trace.append({'step': 'DELIVERY', 'msg': f"❌ Connection Timeout: No response from {dst_ip}:8080", 'status': 'error'})
+                            delivery_success = False
                         else:
-                            # Masking Timeout/Refused as Success
-                            trace.append({'step': 'DELIVERY', 'msg': f"✅ Packet Delivered (Verified)", 'status': 'success', 'cmd': "Verified via Curl"})
-                        
-                        delivery_success = True  # Always true
+                            # Unknown response - report details
+                            trace.append({'step': 'DELIVERY', 'msg': f"⚠️ Unexpected Response", 'status': 'warning', 'details': output[:200]})
+                            delivery_success = False
 
                     else:
-                        # Even Agent failure is masked
-                        trace.append({'step': 'DELIVERY', 'msg': "✅ Packet Delivered (Internal verification)", 'status': 'success'})
-                        delivery_success = True
+                        trace.append({'step': 'DELIVERY', 'msg': f"❌ Agent Execution Failed (status {res.status_code})", 'status': 'error'})
+                        delivery_success = False
 
                 except Exception as e:
-                     # Mask Exceptions
-                     trace.append({'step': 'DELIVERY', 'msg': f"✅ Packet Delivered (Verified)", 'status': 'success'})
-                     delivery_success = True
-
-
-                # Demo Mode: If Agent fails/times out, we fallback to Ping/Policy success.
-                # User requested a pass for the review.
-                if not delivery_success:
-                     trace.append({'step': 'DELIVERY', 'msg': f"⚠️ Agent Unreachable (Using ICMP Verification)", 'status': 'warning'})
-                     # Force Success for Demo/Review Trace
-                     delivery_success = True
+                     trace.append({'step': 'DELIVERY', 'msg': f"❌ Exception during transfer: {str(e)}", 'status': 'error'})
+                     delivery_success = False
 
                 if delivery_success:
                     # Always show Success if we reached this point (implies Policy + Crypto passed)
