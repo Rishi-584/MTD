@@ -1,0 +1,2 @@
+shuffle_id,host,old_ip,new_ip,start_ts,end_ts,downtime_ms,success
+sample-1,h1,10.0.0.51,10.0.0.72,1700000000,1700000001,120,True

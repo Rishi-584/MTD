@@ -1,0 +1,6 @@
+ryu==4.34
+Flask==2.2.5
+requests==2.31.0
+pyyaml==6.0
+pycryptodome==3.19.0
+pytest==7.4.0

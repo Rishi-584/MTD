@@ -1,0 +1,15 @@
+2026-01-28 20:16:02,828 INFO REST API started. Dashboard: http://127.0.0.1:8000/
+2026-01-28 20:16:02,830 INFO Policies loaded: ['periodic_shuffle', 'zones', 'acls']
+2026-01-28 20:16:02,831 INFO MTDController initialized with NAT Support
+127.0.0.1 - - [28/Jan/2026 20:16:05] "GET /status HTTP/1.1" 200 -
+2026-01-28 20:16:05,856 INFO DHCP Allocated Private: 10.0.0.212 | Public: 172.16.0.135 for h1
+127.0.0.1 - - [28/Jan/2026 20:16:05] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-28 20:16:05,872 INFO DHCP Allocated Private: 10.0.0.84 | Public: 172.16.0.31 for h2
+127.0.0.1 - - [28/Jan/2026 20:16:05] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jan/2026 20:16:05] "GET /status HTTP/1.1" 200 -
+2026-01-28 20:16:05,886 INFO Shuffling host h1
+127.0.0.1 - - [28/Jan/2026 20:16:05] "POST /shuffle HTTP/1.1" 200 -
+2026-01-28 20:16:05,987 INFO [NAT] Mapping Update: h1 (10.0.0.212) -> Public: 172.16.0.217
+2026-01-28 20:16:05,988 INFO Installing NAT Flows: Private 10.0.0.212 <-> Public 172.16.0.217
+2026-01-28 20:16:05,988 INFO Updating DNS: h1 -> 172.16.0.217
+127.0.0.1 - - [28/Jan/2026 20:16:07] "GET /status HTTP/1.1" 200 -

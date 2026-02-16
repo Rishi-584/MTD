@@ -1,0 +1,1686 @@
+1 RLock(s) were not greened, to fix this error make sure you run eventlet.monkey_patch() before importing any other modules.
+loading app mtd_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app mtd_controller.py of MTDController
+2026-01-30 23:47:47,754 INFO REST API started. Dashboard: http://127.0.0.1:8000/
+REST API started. Dashboard: http://127.0.0.1:8000/
+2026-01-30 23:47:47,756 INFO Policies loaded: ['periodic_shuffle', 'zones', 'acls']
+Policies loaded: ['periodic_shuffle', 'zones', 'acls']
+2026-01-30 23:47:47,756 INFO MTDController initialized with Risk-Based NAT Hopping
+MTDController initialized with Risk-Based NAT Hopping
+instantiating app ryu.controller.ofp_handler of OFPHandler
+127.0.0.1 - - [30/Jan/2026 23:48:00] "GET /status HTTP/1.1" 200 -
+2026-01-30 23:48:03,052 INFO Switch connected: 1
+Switch connected: 1
+2026-01-30 23:48:05,083 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:01
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:01
+2026-01-30 23:48:05,134 INFO Allocating NEW IP for h1: 10.0.0.110
+Allocating NEW IP for h1: 10.0.0.110
+2026-01-30 23:48:05,246 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.21
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.21
+2026-01-30 23:48:05,249 INFO IMMEDIATE NAT: Installed flows for h1 (Port 1)
+IMMEDIATE NAT: Installed flows for h1 (Port 1)
+2026-01-30 23:48:05,250 INFO DHCP COMPLETE: h1 -> 10.0.0.110 (NAT: 172.16.0.21)
+DHCP COMPLETE: h1 -> 10.0.0.110 (NAT: 172.16.0.21)
+127.0.0.1 - - [30/Jan/2026 23:48:05] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:48:05,261 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:02
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:02
+2026-01-30 23:48:05,311 INFO Allocating NEW IP for h2: 10.0.0.144
+Allocating NEW IP for h2: 10.0.0.144
+2026-01-30 23:48:05,421 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.198
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.198
+2026-01-30 23:48:05,423 INFO IMMEDIATE NAT: Installed flows for h2 (Port 2)
+IMMEDIATE NAT: Installed flows for h2 (Port 2)
+2026-01-30 23:48:05,423 INFO DHCP COMPLETE: h2 -> 10.0.0.144 (NAT: 172.16.0.198)
+DHCP COMPLETE: h2 -> 10.0.0.144 (NAT: 172.16.0.198)
+127.0.0.1 - - [30/Jan/2026 23:48:05] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:48:05,428 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:03
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:03
+2026-01-30 23:48:05,479 INFO Allocating NEW IP for h3: 10.0.0.196
+Allocating NEW IP for h3: 10.0.0.196
+2026-01-30 23:48:05,592 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.212
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.212
+2026-01-30 23:48:05,593 INFO IMMEDIATE NAT: Installed flows for h3 (Port 3)
+IMMEDIATE NAT: Installed flows for h3 (Port 3)
+2026-01-30 23:48:05,593 INFO DHCP COMPLETE: h3 -> 10.0.0.196 (NAT: 172.16.0.212)
+DHCP COMPLETE: h3 -> 10.0.0.196 (NAT: 172.16.0.212)
+127.0.0.1 - - [30/Jan/2026 23:48:05] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:48:05,598 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:04
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:04
+2026-01-30 23:48:05,649 INFO Allocating NEW IP for h4: 10.0.0.51
+Allocating NEW IP for h4: 10.0.0.51
+2026-01-30 23:48:05,760 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.144
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.144
+2026-01-30 23:48:05,764 INFO IMMEDIATE NAT: Installed flows for h4 (Port 4)
+IMMEDIATE NAT: Installed flows for h4 (Port 4)
+2026-01-30 23:48:05,764 INFO DHCP COMPLETE: h4 -> 10.0.0.51 (NAT: 172.16.0.144)
+DHCP COMPLETE: h4 -> 10.0.0.51 (NAT: 172.16.0.144)
+127.0.0.1 - - [30/Jan/2026 23:48:05] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:48:05,775 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:05
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:05
+2026-01-30 23:48:05,826 INFO Allocating NEW IP for h5: 10.0.0.53
+Allocating NEW IP for h5: 10.0.0.53
+2026-01-30 23:48:05,939 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.19
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.19
+2026-01-30 23:48:05,941 INFO IMMEDIATE NAT: Installed flows for h5 (Port 5)
+IMMEDIATE NAT: Installed flows for h5 (Port 5)
+2026-01-30 23:48:05,941 INFO DHCP COMPLETE: h5 -> 10.0.0.53 (NAT: 172.16.0.19)
+DHCP COMPLETE: h5 -> 10.0.0.53 (NAT: 172.16.0.19)
+127.0.0.1 - - [30/Jan/2026 23:48:05] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:48:05,951 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:06
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:06
+2026-01-30 23:48:06,002 INFO Allocating NEW IP for h6: 10.0.0.148
+Allocating NEW IP for h6: 10.0.0.148
+2026-01-30 23:48:06,114 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.56
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.56
+2026-01-30 23:48:06,117 INFO IMMEDIATE NAT: Installed flows for h6 (Port 6)
+IMMEDIATE NAT: Installed flows for h6 (Port 6)
+2026-01-30 23:48:06,117 INFO DHCP COMPLETE: h6 -> 10.0.0.148 (NAT: 172.16.0.56)
+DHCP COMPLETE: h6 -> 10.0.0.148 (NAT: 172.16.0.56)
+127.0.0.1 - - [30/Jan/2026 23:48:06] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:48:15,963 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:48:15,974 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:48:16,076 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.158
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.158
+2026-01-30 23:48:16,077 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.158
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.158
+2026-01-30 23:48:16,080 INFO Updating DNS: h5 -> 172.16.0.158
+Updating DNS: h5 -> 172.16.0.158
+2026-01-30 23:48:16,978 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:48:16,980 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:48:17,082 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.109
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.109
+2026-01-30 23:48:17,082 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.109
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.109
+2026-01-30 23:48:17,086 INFO Updating DNS: h6 -> 172.16.0.109
+Updating DNS: h6 -> 172.16.0.109
+2026-01-30 23:48:26,010 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:48:26,020 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:48:26,021 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:48:26,024 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:48:26,123 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.180
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.180
+2026-01-30 23:48:26,123 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.180
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.180
+2026-01-30 23:48:26,127 INFO Updating DNS: h3 -> 172.16.0.180
+Updating DNS: h3 -> 172.16.0.180
+2026-01-30 23:48:26,127 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.188
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.188
+2026-01-30 23:48:26,127 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.188
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.188
+2026-01-30 23:48:26,129 INFO Updating DNS: h4 -> 172.16.0.188
+Updating DNS: h4 -> 172.16.0.188
+2026-01-30 23:48:27,027 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:48:27,039 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:48:27,141 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.137
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.137
+2026-01-30 23:48:27,141 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.137
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.137
+2026-01-30 23:48:27,146 INFO Updating DNS: h5 -> 172.16.0.137
+Updating DNS: h5 -> 172.16.0.137
+2026-01-30 23:48:28,042 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:48:28,053 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:48:28,155 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.248
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.248
+2026-01-30 23:48:28,156 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.248
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.248
+2026-01-30 23:48:28,159 INFO Updating DNS: h6 -> 172.16.0.248
+Updating DNS: h6 -> 172.16.0.248
+2026-01-30 23:48:38,087 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:48:38,097 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:48:38,199 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.116
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.116
+2026-01-30 23:48:38,199 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.116
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.116
+2026-01-30 23:48:38,201 INFO Updating DNS: h5 -> 172.16.0.116
+Updating DNS: h5 -> 172.16.0.116
+2026-01-30 23:48:39,099 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:48:39,108 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:48:39,210 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.229
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.229
+2026-01-30 23:48:39,210 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.229
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.229
+2026-01-30 23:48:39,212 INFO Updating DNS: h6 -> 172.16.0.229
+Updating DNS: h6 -> 172.16.0.229
+2026-01-30 23:48:46,129 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:48:46,138 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:48:46,138 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:48:46,143 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:48:46,240 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.207
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.207
+2026-01-30 23:48:46,241 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.207
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.207
+2026-01-30 23:48:46,245 INFO Updating DNS: h1 -> 172.16.0.207
+Updating DNS: h1 -> 172.16.0.207
+2026-01-30 23:48:46,246 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.172
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.172
+2026-01-30 23:48:46,246 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.172
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.172
+2026-01-30 23:48:46,248 INFO Updating DNS: h2 -> 172.16.0.172
+Updating DNS: h2 -> 172.16.0.172
+2026-01-30 23:48:47,145 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:48:47,154 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:48:47,155 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:48:47,158 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:48:47,256 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.120
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.120
+2026-01-30 23:48:47,256 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.120
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.120
+2026-01-30 23:48:47,259 INFO Updating DNS: h3 -> 172.16.0.120
+Updating DNS: h3 -> 172.16.0.120
+2026-01-30 23:48:47,259 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.43
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.43
+2026-01-30 23:48:47,259 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.43
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.43
+2026-01-30 23:48:47,261 INFO Updating DNS: h4 -> 172.16.0.43
+Updating DNS: h4 -> 172.16.0.43
+2026-01-30 23:48:49,160 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:48:49,171 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:48:49,273 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.71
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.71
+2026-01-30 23:48:49,273 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.71
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.71
+2026-01-30 23:48:49,276 INFO Updating DNS: h5 -> 172.16.0.71
+Updating DNS: h5 -> 172.16.0.71
+2026-01-30 23:48:50,172 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:48:50,182 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:48:50,284 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.178
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.178
+2026-01-30 23:48:50,284 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.178
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.178
+2026-01-30 23:48:50,288 INFO Updating DNS: h6 -> 172.16.0.178
+Updating DNS: h6 -> 172.16.0.178
+2026-01-30 23:49:00,204 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:49:00,215 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:49:00,317 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.18
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.18
+2026-01-30 23:49:00,317 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.18
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.18
+2026-01-30 23:49:00,320 INFO Updating DNS: h5 -> 172.16.0.18
+Updating DNS: h5 -> 172.16.0.18
+127.0.0.1 - - [30/Jan/2026 23:49:00] "GET /status HTTP/1.1" 200 -
+2026-01-30 23:49:01,217 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:49:01,227 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:49:01,328 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.98
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.98
+2026-01-30 23:49:01,328 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.98
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.98
+2026-01-30 23:49:01,329 INFO Updating DNS: h6 -> 172.16.0.98
+Updating DNS: h6 -> 172.16.0.98
+2026-01-30 23:49:08,236 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:49:08,249 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:49:08,249 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:49:08,255 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:49:08,351 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.128
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.128
+2026-01-30 23:49:08,351 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.128
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.128
+2026-01-30 23:49:08,354 INFO Updating DNS: h3 -> 172.16.0.128
+Updating DNS: h3 -> 172.16.0.128
+2026-01-30 23:49:08,356 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.16
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.16
+2026-01-30 23:49:08,356 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.16
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.16
+2026-01-30 23:49:08,358 INFO Updating DNS: h4 -> 172.16.0.16
+Updating DNS: h4 -> 172.16.0.16
+2026-01-30 23:49:11,258 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:49:11,267 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:49:11,369 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.219
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.219
+2026-01-30 23:49:11,369 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.219
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.219
+2026-01-30 23:49:11,372 INFO Updating DNS: h5 -> 172.16.0.219
+Updating DNS: h5 -> 172.16.0.219
+2026-01-30 23:49:12,269 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:49:12,281 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:49:12,382 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.33
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.33
+2026-01-30 23:49:12,383 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.33
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.33
+2026-01-30 23:49:12,386 INFO Updating DNS: h6 -> 172.16.0.33
+Updating DNS: h6 -> 172.16.0.33
+2026-01-30 23:49:22,294 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:49:22,303 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:49:22,404 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.185
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.185
+2026-01-30 23:49:22,405 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.185
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.185
+2026-01-30 23:49:22,407 INFO Updating DNS: h5 -> 172.16.0.185
+Updating DNS: h5 -> 172.16.0.185
+2026-01-30 23:49:23,305 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:49:23,315 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:49:23,416 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.147
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.147
+2026-01-30 23:49:23,416 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.147
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.147
+2026-01-30 23:49:23,420 INFO Updating DNS: h6 -> 172.16.0.147
+Updating DNS: h6 -> 172.16.0.147
+2026-01-30 23:49:27,319 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:49:27,330 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:49:27,330 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:49:27,334 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:49:27,431 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.57
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.57
+2026-01-30 23:49:27,432 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.57
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.57
+2026-01-30 23:49:27,435 INFO Updating DNS: h1 -> 172.16.0.57
+Updating DNS: h1 -> 172.16.0.57
+2026-01-30 23:49:27,435 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.101
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.101
+2026-01-30 23:49:27,435 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.101
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.101
+2026-01-30 23:49:27,438 INFO Updating DNS: h2 -> 172.16.0.101
+Updating DNS: h2 -> 172.16.0.101
+2026-01-30 23:49:29,337 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:49:29,343 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:49:29,343 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:49:29,347 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:49:29,444 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.196
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.196
+2026-01-30 23:49:29,444 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.196
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.196
+2026-01-30 23:49:29,446 INFO Updating DNS: h3 -> 172.16.0.196
+Updating DNS: h3 -> 172.16.0.196
+2026-01-30 23:49:29,448 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.28
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.28
+2026-01-30 23:49:29,448 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.28
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.28
+2026-01-30 23:49:29,449 INFO Updating DNS: h4 -> 172.16.0.28
+Updating DNS: h4 -> 172.16.0.28
+2026-01-30 23:49:33,352 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:49:33,361 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:49:33,462 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.124
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.124
+2026-01-30 23:49:33,463 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.124
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.124
+2026-01-30 23:49:33,465 INFO Updating DNS: h5 -> 172.16.0.124
+Updating DNS: h5 -> 172.16.0.124
+2026-01-30 23:49:34,362 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:49:34,373 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:49:34,474 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.115
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.115
+2026-01-30 23:49:34,474 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.115
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.115
+2026-01-30 23:49:34,477 INFO Updating DNS: h6 -> 172.16.0.115
+Updating DNS: h6 -> 172.16.0.115
+2026-01-30 23:49:44,383 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:49:44,394 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:49:44,495 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.116
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.116
+2026-01-30 23:49:44,495 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.116
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.116
+2026-01-30 23:49:44,497 INFO Updating DNS: h5 -> 172.16.0.116
+Updating DNS: h5 -> 172.16.0.116
+2026-01-30 23:49:45,395 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:49:45,405 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:49:45,507 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.247
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.247
+2026-01-30 23:49:45,507 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.247
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.247
+2026-01-30 23:49:45,510 INFO Updating DNS: h6 -> 172.16.0.247
+Updating DNS: h6 -> 172.16.0.247
+2026-01-30 23:49:50,411 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:49:50,422 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:49:50,422 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:49:50,426 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:49:50,523 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.68
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.68
+2026-01-30 23:49:50,524 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.68
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.68
+2026-01-30 23:49:50,527 INFO Updating DNS: h3 -> 172.16.0.68
+Updating DNS: h3 -> 172.16.0.68
+2026-01-30 23:49:50,528 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.27
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.27
+2026-01-30 23:49:50,528 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.27
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.27
+2026-01-30 23:49:50,530 INFO Updating DNS: h4 -> 172.16.0.27
+Updating DNS: h4 -> 172.16.0.27
+2026-01-30 23:49:55,441 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:49:55,451 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:49:55,553 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.91
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.91
+2026-01-30 23:49:55,553 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.91
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.91
+2026-01-30 23:49:55,555 INFO Updating DNS: h5 -> 172.16.0.91
+Updating DNS: h5 -> 172.16.0.91
+2026-01-30 23:49:56,454 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:49:56,466 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:49:56,568 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.186
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.186
+2026-01-30 23:49:56,568 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.186
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.186
+2026-01-30 23:49:56,572 INFO Updating DNS: h6 -> 172.16.0.186
+Updating DNS: h6 -> 172.16.0.186
+127.0.0.1 - - [30/Jan/2026 23:50:00] "GET /status HTTP/1.1" 200 -
+2026-01-30 23:50:06,490 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:50:06,494 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:50:06,595 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.20
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.20
+2026-01-30 23:50:06,595 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.20
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.20
+2026-01-30 23:50:06,599 INFO Updating DNS: h5 -> 172.16.0.20
+Updating DNS: h5 -> 172.16.0.20
+2026-01-30 23:50:07,497 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:50:07,509 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:50:07,611 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.174
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.174
+2026-01-30 23:50:07,611 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.174
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.174
+2026-01-30 23:50:07,614 INFO Updating DNS: h6 -> 172.16.0.174
+Updating DNS: h6 -> 172.16.0.174
+2026-01-30 23:50:08,511 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:50:08,520 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:50:08,521 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:50:08,525 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:50:08,622 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.141
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.141
+2026-01-30 23:50:08,622 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.141
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.141
+2026-01-30 23:50:08,626 INFO Updating DNS: h1 -> 172.16.0.141
+Updating DNS: h1 -> 172.16.0.141
+2026-01-30 23:50:08,626 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.153
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.153
+2026-01-30 23:50:08,626 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.153
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.153
+2026-01-30 23:50:08,628 INFO Updating DNS: h2 -> 172.16.0.153
+Updating DNS: h2 -> 172.16.0.153
+2026-01-30 23:50:11,533 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:50:11,544 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:50:11,544 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:50:11,548 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:50:11,645 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.132
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.132
+2026-01-30 23:50:11,645 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.132
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.132
+2026-01-30 23:50:11,647 INFO Updating DNS: h3 -> 172.16.0.132
+Updating DNS: h3 -> 172.16.0.132
+2026-01-30 23:50:11,649 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.248
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.248
+2026-01-30 23:50:11,649 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.248
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.248
+2026-01-30 23:50:11,651 INFO Updating DNS: h4 -> 172.16.0.248
+Updating DNS: h4 -> 172.16.0.248
+2026-01-30 23:50:14,240 INFO Switch connected: 1
+Switch connected: 1
+2026-01-30 23:50:17,562 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:50:17,573 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:50:17,674 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.144
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.144
+2026-01-30 23:50:17,675 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.144
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.144
+2026-01-30 23:50:17,677 INFO Updating DNS: h5 -> 172.16.0.144
+Updating DNS: h5 -> 172.16.0.144
+2026-01-30 23:50:18,575 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:50:18,586 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:50:18,687 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.46
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.46
+2026-01-30 23:50:18,688 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.46
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.46
+2026-01-30 23:50:18,690 INFO Updating DNS: h6 -> 172.16.0.46
+Updating DNS: h6 -> 172.16.0.46
+2026-01-30 23:50:28,609 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:50:28,619 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:50:28,721 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.83
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.83
+2026-01-30 23:50:28,721 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.83
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.83
+2026-01-30 23:50:28,724 INFO Updating DNS: h5 -> 172.16.0.83
+Updating DNS: h5 -> 172.16.0.83
+2026-01-30 23:50:29,622 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:50:29,634 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:50:29,735 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.226
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.226
+2026-01-30 23:50:29,736 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.226
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.226
+2026-01-30 23:50:29,738 INFO Updating DNS: h6 -> 172.16.0.226
+Updating DNS: h6 -> 172.16.0.226
+2026-01-30 23:50:32,642 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:50:32,655 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:50:32,655 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:50:32,660 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:50:32,756 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.242
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.242
+2026-01-30 23:50:32,756 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.242
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.242
+2026-01-30 23:50:32,758 INFO Updating DNS: h3 -> 172.16.0.242
+Updating DNS: h3 -> 172.16.0.242
+2026-01-30 23:50:32,761 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.241
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.241
+2026-01-30 23:50:32,761 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.241
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.241
+2026-01-30 23:50:32,763 INFO Updating DNS: h4 -> 172.16.0.241
+Updating DNS: h4 -> 172.16.0.241
+2026-01-30 23:50:39,380 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:01
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:01
+2026-01-30 23:50:39,431 INFO Found existing valid lease for h1: 10.0.0.110
+Found existing valid lease for h1: 10.0.0.110
+2026-01-30 23:50:39,540 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.128
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.128
+2026-01-30 23:50:39,541 INFO IMMEDIATE NAT: Installed flows for h1 (Port 1)
+IMMEDIATE NAT: Installed flows for h1 (Port 1)
+2026-01-30 23:50:39,541 INFO DHCP COMPLETE: h1 -> 10.0.0.110 (NAT: 172.16.0.128)
+DHCP COMPLETE: h1 -> 10.0.0.110 (NAT: 172.16.0.128)
+127.0.0.1 - - [30/Jan/2026 23:50:39] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:50:39,547 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:02
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:02
+2026-01-30 23:50:39,598 INFO Found existing valid lease for h2: 10.0.0.144
+Found existing valid lease for h2: 10.0.0.144
+2026-01-30 23:50:39,710 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.214
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.214
+2026-01-30 23:50:39,713 INFO IMMEDIATE NAT: Installed flows for h2 (Port 2)
+IMMEDIATE NAT: Installed flows for h2 (Port 2)
+2026-01-30 23:50:39,713 INFO DHCP COMPLETE: h2 -> 10.0.0.144 (NAT: 172.16.0.214)
+DHCP COMPLETE: h2 -> 10.0.0.144 (NAT: 172.16.0.214)
+127.0.0.1 - - [30/Jan/2026 23:50:39] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:50:39,714 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:50:39,717 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:50:39,723 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:03
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:03
+2026-01-30 23:50:39,774 INFO Found existing valid lease for h3: 10.0.0.196
+Found existing valid lease for h3: 10.0.0.196
+2026-01-30 23:50:39,887 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.117
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.117
+2026-01-30 23:50:39,889 INFO IMMEDIATE NAT: Installed flows for h3 (Port 3)
+IMMEDIATE NAT: Installed flows for h3 (Port 3)
+2026-01-30 23:50:39,889 INFO DHCP COMPLETE: h3 -> 10.0.0.196 (NAT: 172.16.0.117)
+DHCP COMPLETE: h3 -> 10.0.0.196 (NAT: 172.16.0.117)
+127.0.0.1 - - [30/Jan/2026 23:50:39] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:50:39,890 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.169
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.169
+2026-01-30 23:50:39,890 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.169
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.169
+2026-01-30 23:50:39,892 INFO Updating DNS: h5 -> 172.16.0.169
+Updating DNS: h5 -> 172.16.0.169
+2026-01-30 23:50:39,899 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:04
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:04
+2026-01-30 23:50:39,950 INFO Found existing valid lease for h4: 10.0.0.51
+Found existing valid lease for h4: 10.0.0.51
+2026-01-30 23:50:40,059 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.84
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.84
+2026-01-30 23:50:40,061 INFO IMMEDIATE NAT: Installed flows for h4 (Port 4)
+IMMEDIATE NAT: Installed flows for h4 (Port 4)
+2026-01-30 23:50:40,061 INFO DHCP COMPLETE: h4 -> 10.0.0.51 (NAT: 172.16.0.84)
+DHCP COMPLETE: h4 -> 10.0.0.51 (NAT: 172.16.0.84)
+127.0.0.1 - - [30/Jan/2026 23:50:40] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:50:40,070 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:05
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:05
+2026-01-30 23:50:40,120 INFO Found existing valid lease for h5: 10.0.0.53
+Found existing valid lease for h5: 10.0.0.53
+2026-01-30 23:50:40,232 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.46
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.46
+2026-01-30 23:50:40,234 INFO IMMEDIATE NAT: Installed flows for h5 (Port 5)
+IMMEDIATE NAT: Installed flows for h5 (Port 5)
+2026-01-30 23:50:40,234 INFO DHCP COMPLETE: h5 -> 10.0.0.53 (NAT: 172.16.0.46)
+DHCP COMPLETE: h5 -> 10.0.0.53 (NAT: 172.16.0.46)
+127.0.0.1 - - [30/Jan/2026 23:50:40] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:50:40,243 INFO Checking DHCP Lease Table for MAC: 00:00:00:00:00:06
+Checking DHCP Lease Table for MAC: 00:00:00:00:00:06
+2026-01-30 23:50:40,294 INFO Found existing valid lease for h6: 10.0.0.148
+Found existing valid lease for h6: 10.0.0.148
+2026-01-30 23:50:40,406 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.24
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.24
+2026-01-30 23:50:40,408 INFO IMMEDIATE NAT: Installed flows for h6 (Port 6)
+IMMEDIATE NAT: Installed flows for h6 (Port 6)
+2026-01-30 23:50:40,408 INFO DHCP COMPLETE: h6 -> 10.0.0.148 (NAT: 172.16.0.24)
+DHCP COMPLETE: h6 -> 10.0.0.148 (NAT: 172.16.0.24)
+127.0.0.1 - - [30/Jan/2026 23:50:40] "POST /sim/dhcp_discover HTTP/1.1" 200 -
+2026-01-30 23:50:50,736 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:50:50,746 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:50:50,747 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:50:50,752 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:50:50,848 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.72
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.72
+2026-01-30 23:50:50,849 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.72
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.72
+2026-01-30 23:50:50,853 INFO Updating DNS: h5 -> 172.16.0.72
+Updating DNS: h5 -> 172.16.0.72
+2026-01-30 23:50:50,854 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.238
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.238
+2026-01-30 23:50:50,854 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.238
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.238
+2026-01-30 23:50:50,856 INFO Updating DNS: h6 -> 172.16.0.238
+Updating DNS: h6 -> 172.16.0.238
+127.0.0.1 - - [30/Jan/2026 23:51:00] "GET /status HTTP/1.1" 200 -
+2026-01-30 23:51:00,775 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:51:00,786 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:51:00,786 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:51:00,791 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:51:00,887 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.166
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.166
+2026-01-30 23:51:00,888 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.166
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.166
+2026-01-30 23:51:00,890 INFO Updating DNS: h3 -> 172.16.0.166
+Updating DNS: h3 -> 172.16.0.166
+2026-01-30 23:51:00,892 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.92
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.92
+2026-01-30 23:51:00,892 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.92
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.92
+2026-01-30 23:51:00,894 INFO Updating DNS: h4 -> 172.16.0.92
+Updating DNS: h4 -> 172.16.0.92
+2026-01-30 23:51:01,793 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:51:01,805 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:51:01,806 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:51:01,811 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:51:01,907 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.124
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.124
+2026-01-30 23:51:01,907 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.124
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.124
+2026-01-30 23:51:01,909 INFO Updating DNS: h5 -> 172.16.0.124
+Updating DNS: h5 -> 172.16.0.124
+2026-01-30 23:51:01,912 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.175
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.175
+2026-01-30 23:51:01,912 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.175
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.175
+2026-01-30 23:51:01,914 INFO Updating DNS: h6 -> 172.16.0.175
+Updating DNS: h6 -> 172.16.0.175
+2026-01-30 23:51:12,826 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:51:12,834 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:51:12,835 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:51:12,838 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:51:12,935 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.159
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.159
+2026-01-30 23:51:12,936 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.159
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.159
+2026-01-30 23:51:12,938 INFO Updating DNS: h5 -> 172.16.0.159
+Updating DNS: h5 -> 172.16.0.159
+2026-01-30 23:51:12,939 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.49
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.49
+2026-01-30 23:51:12,939 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.49
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.49
+2026-01-30 23:51:12,941 INFO Updating DNS: h6 -> 172.16.0.49
+Updating DNS: h6 -> 172.16.0.49
+2026-01-30 23:51:19,849 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:51:19,860 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:51:19,860 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:51:19,865 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:51:19,962 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.227
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.227
+2026-01-30 23:51:19,962 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.227
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.227
+2026-01-30 23:51:19,964 INFO Updating DNS: h1 -> 172.16.0.227
+Updating DNS: h1 -> 172.16.0.227
+2026-01-30 23:51:19,966 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.74
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.74
+2026-01-30 23:51:19,966 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.74
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.74
+2026-01-30 23:51:19,968 INFO Updating DNS: h2 -> 172.16.0.74
+Updating DNS: h2 -> 172.16.0.74
+2026-01-30 23:51:21,869 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:51:21,880 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:51:21,881 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:51:21,885 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:51:21,982 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.93
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.93
+2026-01-30 23:51:21,982 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.93
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.93
+2026-01-30 23:51:21,985 INFO Updating DNS: h3 -> 172.16.0.93
+Updating DNS: h3 -> 172.16.0.93
+2026-01-30 23:51:21,986 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.135
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.135
+2026-01-30 23:51:21,986 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.135
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.135
+2026-01-30 23:51:21,988 INFO Updating DNS: h4 -> 172.16.0.135
+Updating DNS: h4 -> 172.16.0.135
+2026-01-30 23:51:23,888 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:51:23,899 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:51:23,899 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:51:23,904 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:51:24,000 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.121
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.121
+2026-01-30 23:51:24,001 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.121
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.121
+2026-01-30 23:51:24,004 INFO Updating DNS: h5 -> 172.16.0.121
+Updating DNS: h5 -> 172.16.0.121
+2026-01-30 23:51:24,005 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.147
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.147
+2026-01-30 23:51:24,005 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.147
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.147
+2026-01-30 23:51:24,007 INFO Updating DNS: h6 -> 172.16.0.147
+Updating DNS: h6 -> 172.16.0.147
+2026-01-30 23:51:34,921 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:51:34,933 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:51:34,933 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:51:34,938 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:51:35,035 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.134
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.134
+2026-01-30 23:51:35,035 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.134
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.134
+2026-01-30 23:51:35,037 INFO Updating DNS: h5 -> 172.16.0.134
+Updating DNS: h5 -> 172.16.0.134
+2026-01-30 23:51:35,039 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.187
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.187
+2026-01-30 23:51:35,039 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.187
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.187
+2026-01-30 23:51:35,041 INFO Updating DNS: h6 -> 172.16.0.187
+Updating DNS: h6 -> 172.16.0.187
+2026-01-30 23:51:42,952 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:51:42,963 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:51:42,963 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:51:42,967 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:51:43,065 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.62
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.62
+2026-01-30 23:51:43,066 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.62
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.62
+2026-01-30 23:51:43,068 INFO Updating DNS: h3 -> 172.16.0.62
+Updating DNS: h3 -> 172.16.0.62
+2026-01-30 23:51:43,068 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.100
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.100
+2026-01-30 23:51:43,068 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.100
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.100
+2026-01-30 23:51:43,070 INFO Updating DNS: h4 -> 172.16.0.100
+Updating DNS: h4 -> 172.16.0.100
+2026-01-30 23:51:45,972 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:51:45,983 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:51:45,983 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:51:45,988 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:51:46,085 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.61
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.61
+2026-01-30 23:51:46,085 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.61
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.61
+2026-01-30 23:51:46,087 INFO Updating DNS: h5 -> 172.16.0.61
+Updating DNS: h5 -> 172.16.0.61
+2026-01-30 23:51:46,089 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.162
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.162
+2026-01-30 23:51:46,089 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.162
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.162
+2026-01-30 23:51:46,091 INFO Updating DNS: h6 -> 172.16.0.162
+Updating DNS: h6 -> 172.16.0.162
+2026-01-30 23:51:57,004 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:51:57,015 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:51:57,015 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:51:57,020 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:51:57,117 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.32
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.32
+2026-01-30 23:51:57,117 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.32
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.32
+2026-01-30 23:51:57,120 INFO Updating DNS: h5 -> 172.16.0.32
+Updating DNS: h5 -> 172.16.0.32
+2026-01-30 23:51:57,121 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.82
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.82
+2026-01-30 23:51:57,121 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.82
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.82
+2026-01-30 23:51:57,122 INFO Updating DNS: h6 -> 172.16.0.82
+Updating DNS: h6 -> 172.16.0.82
+127.0.0.1 - - [30/Jan/2026 23:52:00] "GET /status HTTP/1.1" 200 -
+2026-01-30 23:52:01,026 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:52:01,037 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:52:01,037 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:52:01,043 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:52:01,138 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.160
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.160
+2026-01-30 23:52:01,139 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.160
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.160
+2026-01-30 23:52:01,141 INFO Updating DNS: h1 -> 172.16.0.160
+Updating DNS: h1 -> 172.16.0.160
+2026-01-30 23:52:01,144 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.67
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.67
+2026-01-30 23:52:01,144 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.67
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.67
+2026-01-30 23:52:01,147 INFO Updating DNS: h2 -> 172.16.0.67
+Updating DNS: h2 -> 172.16.0.67
+2026-01-30 23:52:04,051 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:52:04,061 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:52:04,062 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:52:04,066 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:52:04,163 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.35
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.35
+2026-01-30 23:52:04,163 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.35
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.35
+2026-01-30 23:52:04,165 INFO Updating DNS: h3 -> 172.16.0.35
+Updating DNS: h3 -> 172.16.0.35
+2026-01-30 23:52:04,167 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.137
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.137
+2026-01-30 23:52:04,167 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.137
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.137
+2026-01-30 23:52:04,169 INFO Updating DNS: h4 -> 172.16.0.137
+Updating DNS: h4 -> 172.16.0.137
+2026-01-30 23:52:08,076 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:52:08,083 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:52:08,083 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:52:08,087 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:52:08,184 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.49
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.49
+2026-01-30 23:52:08,185 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.49
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.49
+2026-01-30 23:52:08,188 INFO Updating DNS: h5 -> 172.16.0.49
+Updating DNS: h5 -> 172.16.0.49
+2026-01-30 23:52:08,189 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.139
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.139
+2026-01-30 23:52:08,189 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.139
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.139
+2026-01-30 23:52:08,192 INFO Updating DNS: h6 -> 172.16.0.139
+Updating DNS: h6 -> 172.16.0.139
+2026-01-30 23:52:19,113 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:52:19,126 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:52:19,126 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:52:19,131 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:52:19,227 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.79
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.79
+2026-01-30 23:52:19,228 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.79
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.79
+2026-01-30 23:52:19,231 INFO Updating DNS: h5 -> 172.16.0.79
+Updating DNS: h5 -> 172.16.0.79
+2026-01-30 23:52:19,232 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.127
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.127
+2026-01-30 23:52:19,232 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.127
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.127
+2026-01-30 23:52:19,234 INFO Updating DNS: h6 -> 172.16.0.127
+Updating DNS: h6 -> 172.16.0.127
+2026-01-30 23:52:25,148 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:52:25,159 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:52:25,159 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:52:25,163 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:52:25,260 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.234
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.234
+2026-01-30 23:52:25,260 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.234
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.234
+2026-01-30 23:52:25,263 INFO Updating DNS: h3 -> 172.16.0.234
+Updating DNS: h3 -> 172.16.0.234
+2026-01-30 23:52:25,264 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.41
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.41
+2026-01-30 23:52:25,264 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.41
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.41
+2026-01-30 23:52:25,266 INFO Updating DNS: h4 -> 172.16.0.41
+Updating DNS: h4 -> 172.16.0.41
+2026-01-30 23:52:30,177 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:52:30,185 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:52:30,185 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:52:30,191 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:52:30,285 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.65
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.65
+2026-01-30 23:52:30,286 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.65
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.65
+2026-01-30 23:52:30,291 INFO Updating DNS: h5 -> 172.16.0.65
+Updating DNS: h5 -> 172.16.0.65
+2026-01-30 23:52:30,292 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.28
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.28
+2026-01-30 23:52:30,292 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.28
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.28
+2026-01-30 23:52:30,295 INFO Updating DNS: h6 -> 172.16.0.28
+Updating DNS: h6 -> 172.16.0.28
+2026-01-30 23:52:41,218 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:52:41,228 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:52:41,229 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:52:41,232 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:52:41,330 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.119
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.119
+2026-01-30 23:52:41,331 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.119
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.119
+2026-01-30 23:52:41,334 INFO Updating DNS: h5 -> 172.16.0.119
+Updating DNS: h5 -> 172.16.0.119
+2026-01-30 23:52:41,335 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.120
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.120
+2026-01-30 23:52:41,335 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.120
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.120
+2026-01-30 23:52:41,337 INFO Updating DNS: h6 -> 172.16.0.120
+Updating DNS: h6 -> 172.16.0.120
+2026-01-30 23:52:42,236 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:52:42,247 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:52:42,247 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:52:42,252 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:52:42,348 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.235
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.235
+2026-01-30 23:52:42,349 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.235
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.235
+2026-01-30 23:52:42,352 INFO Updating DNS: h1 -> 172.16.0.235
+Updating DNS: h1 -> 172.16.0.235
+2026-01-30 23:52:42,352 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.18
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.18
+2026-01-30 23:52:42,352 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.18
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.18
+2026-01-30 23:52:42,354 INFO Updating DNS: h2 -> 172.16.0.18
+Updating DNS: h2 -> 172.16.0.18
+2026-01-30 23:52:46,261 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:52:46,272 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:52:46,272 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:52:46,277 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:52:46,374 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.105
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.105
+2026-01-30 23:52:46,374 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.105
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.105
+2026-01-30 23:52:46,377 INFO Updating DNS: h3 -> 172.16.0.105
+Updating DNS: h3 -> 172.16.0.105
+2026-01-30 23:52:46,378 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.239
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.239
+2026-01-30 23:52:46,378 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.239
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.239
+2026-01-30 23:52:46,380 INFO Updating DNS: h4 -> 172.16.0.239
+Updating DNS: h4 -> 172.16.0.239
+2026-01-30 23:52:52,294 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:52:52,304 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:52:52,305 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:52:52,310 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:52:52,406 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.67
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.67
+2026-01-30 23:52:52,406 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.67
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.67
+2026-01-30 23:52:52,409 INFO Updating DNS: h5 -> 172.16.0.67
+Updating DNS: h5 -> 172.16.0.67
+2026-01-30 23:52:52,412 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.177
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.177
+2026-01-30 23:52:52,412 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.177
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.177
+2026-01-30 23:52:52,413 INFO Updating DNS: h6 -> 172.16.0.177
+Updating DNS: h6 -> 172.16.0.177
+127.0.0.1 - - [30/Jan/2026 23:53:00] "GET /status HTTP/1.1" 200 -
+2026-01-30 23:53:03,339 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:53:03,350 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:53:03,350 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:53:03,354 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:53:03,452 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.16
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.16
+2026-01-30 23:53:03,452 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.16
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.16
+2026-01-30 23:53:03,455 INFO Updating DNS: h5 -> 172.16.0.16
+Updating DNS: h5 -> 172.16.0.16
+2026-01-30 23:53:03,456 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.92
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.92
+2026-01-30 23:53:03,456 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.92
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.92
+2026-01-30 23:53:03,459 INFO Updating DNS: h6 -> 172.16.0.92
+Updating DNS: h6 -> 172.16.0.92
+2026-01-30 23:53:07,363 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:53:07,374 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:53:07,374 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:53:07,378 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:53:07,475 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.241
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.241
+2026-01-30 23:53:07,476 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.241
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.241
+2026-01-30 23:53:07,479 INFO Updating DNS: h3 -> 172.16.0.241
+Updating DNS: h3 -> 172.16.0.241
+2026-01-30 23:53:07,479 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.114
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.114
+2026-01-30 23:53:07,479 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.114
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.114
+2026-01-30 23:53:07,481 INFO Updating DNS: h4 -> 172.16.0.114
+Updating DNS: h4 -> 172.16.0.114
+2026-01-30 23:53:14,391 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:53:14,402 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:53:14,402 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:53:14,407 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:53:14,503 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.100
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.100
+2026-01-30 23:53:14,503 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.100
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.100
+2026-01-30 23:53:14,506 INFO Updating DNS: h5 -> 172.16.0.100
+Updating DNS: h5 -> 172.16.0.100
+2026-01-30 23:53:14,508 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.54
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.54
+2026-01-30 23:53:14,508 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.54
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.54
+2026-01-30 23:53:14,510 INFO Updating DNS: h6 -> 172.16.0.54
+Updating DNS: h6 -> 172.16.0.54
+2026-01-30 23:53:23,423 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:53:23,434 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:53:23,434 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:53:23,439 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:53:23,535 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.234
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.234
+2026-01-30 23:53:23,536 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.234
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.234
+2026-01-30 23:53:23,538 INFO Updating DNS: h1 -> 172.16.0.234
+Updating DNS: h1 -> 172.16.0.234
+2026-01-30 23:53:23,540 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.126
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.126
+2026-01-30 23:53:23,540 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.126
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.126
+2026-01-30 23:53:23,542 INFO Updating DNS: h2 -> 172.16.0.126
+Updating DNS: h2 -> 172.16.0.126
+2026-01-30 23:53:25,443 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:53:25,454 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:53:25,455 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:53:25,460 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:53:25,556 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.141
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.141
+2026-01-30 23:53:25,557 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.141
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.141
+2026-01-30 23:53:25,561 INFO Updating DNS: h5 -> 172.16.0.141
+Updating DNS: h5 -> 172.16.0.141
+2026-01-30 23:53:25,562 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.248
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.248
+2026-01-30 23:53:25,562 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.248
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.248
+2026-01-30 23:53:25,564 INFO Updating DNS: h6 -> 172.16.0.248
+Updating DNS: h6 -> 172.16.0.248
+2026-01-30 23:53:28,466 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:53:28,479 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:53:28,479 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:53:28,485 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:53:28,580 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.63
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.63
+2026-01-30 23:53:28,581 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.63
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.63
+2026-01-30 23:53:28,582 INFO Updating DNS: h3 -> 172.16.0.63
+Updating DNS: h3 -> 172.16.0.63
+2026-01-30 23:53:28,587 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.162
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.162
+2026-01-30 23:53:28,587 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.162
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.162
+2026-01-30 23:53:28,589 INFO Updating DNS: h4 -> 172.16.0.162
+Updating DNS: h4 -> 172.16.0.162
+2026-01-30 23:53:36,499 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:53:36,512 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:53:36,513 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:53:36,519 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:53:36,614 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.25
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.25
+2026-01-30 23:53:36,614 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.25
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.25
+2026-01-30 23:53:36,616 INFO Updating DNS: h5 -> 172.16.0.25
+Updating DNS: h5 -> 172.16.0.25
+2026-01-30 23:53:36,620 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.102
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.102
+2026-01-30 23:53:36,620 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.102
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.102
+2026-01-30 23:53:36,621 INFO Updating DNS: h6 -> 172.16.0.102
+Updating DNS: h6 -> 172.16.0.102
+2026-01-30 23:53:47,539 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:53:47,554 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:53:47,555 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:53:47,559 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:53:47,656 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.244
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.244
+2026-01-30 23:53:47,656 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.244
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.244
+2026-01-30 23:53:47,660 INFO Updating DNS: h5 -> 172.16.0.244
+Updating DNS: h5 -> 172.16.0.244
+2026-01-30 23:53:47,660 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.238
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.238
+2026-01-30 23:53:47,660 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.238
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.238
+2026-01-30 23:53:47,662 INFO Updating DNS: h6 -> 172.16.0.238
+Updating DNS: h6 -> 172.16.0.238
+2026-01-30 23:53:49,563 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:53:49,568 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:53:49,568 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:53:49,573 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:53:49,670 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.45
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.45
+2026-01-30 23:53:49,670 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.45
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.45
+2026-01-30 23:53:49,674 INFO Updating DNS: h3 -> 172.16.0.45
+Updating DNS: h3 -> 172.16.0.45
+2026-01-30 23:53:49,675 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.211
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.211
+2026-01-30 23:53:49,676 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.211
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.211
+2026-01-30 23:53:49,680 INFO Updating DNS: h4 -> 172.16.0.211
+Updating DNS: h4 -> 172.16.0.211
+2026-01-30 23:53:58,588 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:53:58,600 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:53:58,600 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:53:58,607 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:53:58,702 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.246
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.246
+2026-01-30 23:53:58,703 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.246
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.246
+2026-01-30 23:53:58,708 INFO Updating DNS: h5 -> 172.16.0.246
+Updating DNS: h5 -> 172.16.0.246
+2026-01-30 23:53:58,709 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.180
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.180
+2026-01-30 23:53:58,710 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.180
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.180
+2026-01-30 23:53:58,713 INFO Updating DNS: h6 -> 172.16.0.180
+Updating DNS: h6 -> 172.16.0.180
+127.0.0.1 - - [30/Jan/2026 23:54:00] "GET /status HTTP/1.1" 200 -
+2026-01-30 23:54:04,622 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:54:04,633 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:54:04,633 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:54:04,638 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:54:04,734 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.57
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.57
+2026-01-30 23:54:04,735 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.57
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.57
+2026-01-30 23:54:04,740 INFO Updating DNS: h1 -> 172.16.0.57
+Updating DNS: h1 -> 172.16.0.57
+2026-01-30 23:54:04,741 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.42
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.42
+2026-01-30 23:54:04,741 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.42
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.42
+2026-01-30 23:54:04,745 INFO Updating DNS: h2 -> 172.16.0.42
+Updating DNS: h2 -> 172.16.0.42
+2026-01-30 23:54:09,651 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:54:09,663 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:54:09,663 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:54:09,667 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:54:09,764 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.148
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.148
+2026-01-30 23:54:09,764 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.148
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.148
+2026-01-30 23:54:09,767 INFO Updating DNS: h5 -> 172.16.0.148
+Updating DNS: h5 -> 172.16.0.148
+2026-01-30 23:54:09,768 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.14
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.14
+2026-01-30 23:54:09,769 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.14
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.14
+2026-01-30 23:54:09,772 INFO Updating DNS: h6 -> 172.16.0.14
+Updating DNS: h6 -> 172.16.0.14
+2026-01-30 23:54:10,671 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:54:10,681 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:54:10,681 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:54:10,688 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:54:10,782 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.239
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.239
+2026-01-30 23:54:10,782 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.239
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.239
+2026-01-30 23:54:10,784 INFO Updating DNS: h3 -> 172.16.0.239
+Updating DNS: h3 -> 172.16.0.239
+2026-01-30 23:54:10,789 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.151
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.151
+2026-01-30 23:54:10,789 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.151
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.151
+2026-01-30 23:54:10,791 INFO Updating DNS: h4 -> 172.16.0.151
+Updating DNS: h4 -> 172.16.0.151
+2026-01-30 23:54:20,712 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:54:20,721 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:54:20,721 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:54:20,724 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:54:20,821 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.199
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.199
+2026-01-30 23:54:20,821 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.199
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.199
+2026-01-30 23:54:20,822 INFO Updating DNS: h5 -> 172.16.0.199
+Updating DNS: h5 -> 172.16.0.199
+2026-01-30 23:54:20,824 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.172
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.172
+2026-01-30 23:54:20,824 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.172
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.172
+2026-01-30 23:54:20,825 INFO Updating DNS: h6 -> 172.16.0.172
+Updating DNS: h6 -> 172.16.0.172
+2026-01-30 23:54:31,754 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:54:31,765 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:54:31,766 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:54:31,771 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:54:31,771 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:54:31,775 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:54:31,775 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:54:31,780 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:54:31,867 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.63
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.63
+2026-01-30 23:54:31,867 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.63
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.63
+2026-01-30 23:54:31,869 INFO Updating DNS: h3 -> 172.16.0.63
+Updating DNS: h3 -> 172.16.0.63
+2026-01-30 23:54:31,872 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.220
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.220
+2026-01-30 23:54:31,872 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.220
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.220
+2026-01-30 23:54:31,874 INFO Updating DNS: h4 -> 172.16.0.220
+Updating DNS: h4 -> 172.16.0.220
+2026-01-30 23:54:31,876 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.141
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.141
+2026-01-30 23:54:31,876 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.141
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.141
+2026-01-30 23:54:31,878 INFO Updating DNS: h5 -> 172.16.0.141
+Updating DNS: h5 -> 172.16.0.141
+2026-01-30 23:54:31,881 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.179
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.179
+2026-01-30 23:54:31,881 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.179
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.179
+2026-01-30 23:54:31,883 INFO Updating DNS: h6 -> 172.16.0.179
+Updating DNS: h6 -> 172.16.0.179
+2026-01-30 23:54:42,806 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:54:42,819 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:54:42,820 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:54:42,824 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:54:42,921 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.148
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.148
+2026-01-30 23:54:42,921 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.148
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.148
+2026-01-30 23:54:42,924 INFO Updating DNS: h5 -> 172.16.0.148
+Updating DNS: h5 -> 172.16.0.148
+2026-01-30 23:54:42,926 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.112
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.112
+2026-01-30 23:54:42,926 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.112
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.112
+2026-01-30 23:54:42,929 INFO Updating DNS: h6 -> 172.16.0.112
+Updating DNS: h6 -> 172.16.0.112
+2026-01-30 23:54:45,831 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:54:45,846 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:54:45,846 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:54:45,853 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:54:45,948 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.237
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.237
+2026-01-30 23:54:45,949 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.237
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.237
+2026-01-30 23:54:45,953 INFO Updating DNS: h1 -> 172.16.0.237
+Updating DNS: h1 -> 172.16.0.237
+2026-01-30 23:54:45,954 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.224
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.224
+2026-01-30 23:54:45,954 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.224
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.224
+2026-01-30 23:54:45,957 INFO Updating DNS: h2 -> 172.16.0.224
+Updating DNS: h2 -> 172.16.0.224
+2026-01-30 23:54:52,866 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:54:52,878 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:54:52,879 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:54:52,883 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:54:52,980 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.146
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.146
+2026-01-30 23:54:52,981 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.146
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.146
+2026-01-30 23:54:52,986 INFO Updating DNS: h3 -> 172.16.0.146
+Updating DNS: h3 -> 172.16.0.146
+2026-01-30 23:54:52,987 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.235
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.235
+2026-01-30 23:54:52,988 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.235
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.235
+2026-01-30 23:54:52,990 INFO Updating DNS: h4 -> 172.16.0.235
+Updating DNS: h4 -> 172.16.0.235
+2026-01-30 23:54:53,884 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:54:53,895 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:54:53,895 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:54:53,899 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:54:53,996 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.46
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.46
+2026-01-30 23:54:53,997 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.46
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.46
+2026-01-30 23:54:54,000 INFO Updating DNS: h5 -> 172.16.0.46
+Updating DNS: h5 -> 172.16.0.46
+2026-01-30 23:54:54,001 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.236
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.236
+2026-01-30 23:54:54,001 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.236
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.236
+2026-01-30 23:54:54,003 INFO Updating DNS: h6 -> 172.16.0.236
+Updating DNS: h6 -> 172.16.0.236
+127.0.0.1 - - [30/Jan/2026 23:55:00] "GET /status HTTP/1.1" 200 -
+2026-01-30 23:55:04,927 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:55:04,938 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:55:04,939 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:55:04,943 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:55:05,040 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.164
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.164
+2026-01-30 23:55:05,041 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.164
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.164
+2026-01-30 23:55:05,044 INFO Updating DNS: h5 -> 172.16.0.164
+Updating DNS: h5 -> 172.16.0.164
+2026-01-30 23:55:05,045 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.137
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.137
+2026-01-30 23:55:05,045 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.137
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.137
+2026-01-30 23:55:05,047 INFO Updating DNS: h6 -> 172.16.0.137
+Updating DNS: h6 -> 172.16.0.137
+2026-01-30 23:55:13,962 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:55:13,976 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:55:13,976 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:55:13,982 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:55:14,077 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.200
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.200
+2026-01-30 23:55:14,078 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.200
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.200
+2026-01-30 23:55:14,080 INFO Updating DNS: h3 -> 172.16.0.200
+Updating DNS: h3 -> 172.16.0.200
+2026-01-30 23:55:14,083 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.222
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.222
+2026-01-30 23:55:14,083 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.222
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.222
+2026-01-30 23:55:14,085 INFO Updating DNS: h4 -> 172.16.0.222
+Updating DNS: h4 -> 172.16.0.222
+2026-01-30 23:55:15,987 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:55:16,000 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:55:16,001 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:55:16,006 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:55:16,102 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.142
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.142
+2026-01-30 23:55:16,102 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.142
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.142
+2026-01-30 23:55:16,105 INFO Updating DNS: h5 -> 172.16.0.142
+Updating DNS: h5 -> 172.16.0.142
+2026-01-30 23:55:16,108 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.55
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.55
+2026-01-30 23:55:16,108 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.55
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.55
+2026-01-30 23:55:16,111 INFO Updating DNS: h6 -> 172.16.0.55
+Updating DNS: h6 -> 172.16.0.55
+2026-01-30 23:55:27,029 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:55:27,039 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:55:27,039 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:55:27,043 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:55:27,044 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:55:27,049 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:55:27,049 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:55:27,054 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:55:27,140 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.155
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.155
+2026-01-30 23:55:27,140 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.155
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.155
+2026-01-30 23:55:27,144 INFO Updating DNS: h1 -> 172.16.0.155
+Updating DNS: h1 -> 172.16.0.155
+2026-01-30 23:55:27,145 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.110
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.110
+2026-01-30 23:55:27,145 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.110
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.110
+2026-01-30 23:55:27,146 INFO Updating DNS: h2 -> 172.16.0.110
+Updating DNS: h2 -> 172.16.0.110
+2026-01-30 23:55:27,150 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.196
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.196
+2026-01-30 23:55:27,150 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.196
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.196
+2026-01-30 23:55:27,152 INFO Updating DNS: h5 -> 172.16.0.196
+Updating DNS: h5 -> 172.16.0.196
+2026-01-30 23:55:27,155 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.242
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.242
+2026-01-30 23:55:27,155 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.242
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.242
+2026-01-30 23:55:27,157 INFO Updating DNS: h6 -> 172.16.0.242
+Updating DNS: h6 -> 172.16.0.242
+2026-01-30 23:55:35,074 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:55:35,088 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:55:35,088 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:55:35,095 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:55:35,190 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.29
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.29
+2026-01-30 23:55:35,190 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.29
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.29
+2026-01-30 23:55:35,192 INFO Updating DNS: h3 -> 172.16.0.29
+Updating DNS: h3 -> 172.16.0.29
+2026-01-30 23:55:35,197 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.229
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.229
+2026-01-30 23:55:35,197 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.229
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.229
+2026-01-30 23:55:35,199 INFO Updating DNS: h4 -> 172.16.0.229
+Updating DNS: h4 -> 172.16.0.229
+2026-01-30 23:55:38,101 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:55:38,111 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:55:38,111 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:55:38,116 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:55:38,213 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.63
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.63
+2026-01-30 23:55:38,213 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.63
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.63
+2026-01-30 23:55:38,216 INFO Updating DNS: h5 -> 172.16.0.63
+Updating DNS: h5 -> 172.16.0.63
+2026-01-30 23:55:38,218 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.17
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.17
+2026-01-30 23:55:38,218 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.17
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.17
+2026-01-30 23:55:38,221 INFO Updating DNS: h6 -> 172.16.0.17
+Updating DNS: h6 -> 172.16.0.17
+2026-01-30 23:55:49,142 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:55:49,153 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:55:49,153 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:55:49,159 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:55:49,255 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.199
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.199
+2026-01-30 23:55:49,255 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.199
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.199
+2026-01-30 23:55:49,257 INFO Updating DNS: h5 -> 172.16.0.199
+Updating DNS: h5 -> 172.16.0.199
+2026-01-30 23:55:49,260 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.215
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.215
+2026-01-30 23:55:49,260 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.215
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.215
+2026-01-30 23:55:49,262 INFO Updating DNS: h6 -> 172.16.0.215
+Updating DNS: h6 -> 172.16.0.215
+2026-01-30 23:55:56,177 INFO ⏰ Time-based MTD Rotation for h3 (Risk: medium)
+⏰ Time-based MTD Rotation for h3 (Risk: medium)
+2026-01-30 23:55:56,190 INFO Shuffling host h3
+Shuffling host h3
+2026-01-30 23:55:56,191 INFO ⏰ Time-based MTD Rotation for h4 (Risk: medium)
+⏰ Time-based MTD Rotation for h4 (Risk: medium)
+2026-01-30 23:55:56,197 INFO Shuffling host h4
+Shuffling host h4
+2026-01-30 23:55:56,292 INFO [NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.47
+[NAT] Mapping Update: h3 (10.0.0.196) -> Public: 172.16.0.47
+2026-01-30 23:55:56,293 INFO Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.47
+Installing NAT Flows: Private 10.0.0.196 <-> Public 172.16.0.47
+2026-01-30 23:55:56,296 INFO Updating DNS: h3 -> 172.16.0.47
+Updating DNS: h3 -> 172.16.0.47
+2026-01-30 23:55:56,297 INFO [NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.156
+[NAT] Mapping Update: h4 (10.0.0.51) -> Public: 172.16.0.156
+2026-01-30 23:55:56,297 INFO Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.156
+Installing NAT Flows: Private 10.0.0.51 <-> Public 172.16.0.156
+2026-01-30 23:55:56,300 INFO Updating DNS: h4 -> 172.16.0.156
+Updating DNS: h4 -> 172.16.0.156
+2026-01-30 23:56:00,206 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:56:00,218 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:56:00,218 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:56:00,223 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:56:00,319 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.177
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.177
+2026-01-30 23:56:00,320 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.177
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.177
+2026-01-30 23:56:00,322 INFO Updating DNS: h5 -> 172.16.0.177
+Updating DNS: h5 -> 172.16.0.177
+2026-01-30 23:56:00,324 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.176
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.176
+2026-01-30 23:56:00,325 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.176
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.176
+2026-01-30 23:56:00,326 INFO Updating DNS: h6 -> 172.16.0.176
+Updating DNS: h6 -> 172.16.0.176
+127.0.0.1 - - [30/Jan/2026 23:56:00] "GET /status HTTP/1.1" 200 -
+2026-01-30 23:56:08,235 INFO ⏰ Time-based MTD Rotation for h1 (Risk: high)
+⏰ Time-based MTD Rotation for h1 (Risk: high)
+2026-01-30 23:56:08,240 INFO Shuffling host h1
+Shuffling host h1
+2026-01-30 23:56:08,241 INFO ⏰ Time-based MTD Rotation for h2 (Risk: high)
+⏰ Time-based MTD Rotation for h2 (Risk: high)
+2026-01-30 23:56:08,245 INFO Shuffling host h2
+Shuffling host h2
+2026-01-30 23:56:08,342 INFO [NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.222
+[NAT] Mapping Update: h1 (10.0.0.110) -> Public: 172.16.0.222
+2026-01-30 23:56:08,342 INFO Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.222
+Installing NAT Flows: Private 10.0.0.110 <-> Public 172.16.0.222
+2026-01-30 23:56:08,345 INFO Updating DNS: h1 -> 172.16.0.222
+Updating DNS: h1 -> 172.16.0.222
+2026-01-30 23:56:08,347 INFO [NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.46
+[NAT] Mapping Update: h2 (10.0.0.144) -> Public: 172.16.0.46
+2026-01-30 23:56:08,347 INFO Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.46
+Installing NAT Flows: Private 10.0.0.144 <-> Public 172.16.0.46
+2026-01-30 23:56:08,350 INFO Updating DNS: h2 -> 172.16.0.46
+Updating DNS: h2 -> 172.16.0.46
+2026-01-30 23:56:11,250 INFO ⏰ Time-based MTD Rotation for h5 (Risk: low)
+⏰ Time-based MTD Rotation for h5 (Risk: low)
+2026-01-30 23:56:11,263 INFO Shuffling host h5
+Shuffling host h5
+2026-01-30 23:56:11,264 INFO ⏰ Time-based MTD Rotation for h6 (Risk: low)
+⏰ Time-based MTD Rotation for h6 (Risk: low)
+2026-01-30 23:56:11,269 INFO Shuffling host h6
+Shuffling host h6
+2026-01-30 23:56:11,365 INFO [NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.234
+[NAT] Mapping Update: h5 (10.0.0.53) -> Public: 172.16.0.234
+2026-01-30 23:56:11,366 INFO Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.234
+Installing NAT Flows: Private 10.0.0.53 <-> Public 172.16.0.234
+2026-01-30 23:56:11,368 INFO Updating DNS: h5 -> 172.16.0.234
+Updating DNS: h5 -> 172.16.0.234
+2026-01-30 23:56:11,370 INFO [NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.91
+[NAT] Mapping Update: h6 (10.0.0.148) -> Public: 172.16.0.91
+2026-01-30 23:56:11,370 INFO Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.91
+Installing NAT Flows: Private 10.0.0.148 <-> Public 172.16.0.91
+2026-01-30 23:56:11,372 INFO Updating DNS: h6 -> 172.16.0.91
+Updating DNS: h6 -> 172.16.0.91

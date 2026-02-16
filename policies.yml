@@ -1,0 +1,21 @@
+# Policies for MTD and Zone Access Control
+periodic_shuffle:
+  type: periodic
+  interval_seconds: 60
+
+# Zone Definitions
+zones:
+  h1: high
+  h2: high
+  h3: medium
+  h4: medium
+  h5: low
+  h6: low
+  default: low
+
+# Access Control List (Sequential Evaluation)
+acls:
+  - {src: high, dst: ALL, action: allow}
+  - {src: medium, dst: low, action: allow}
+  - {src: medium, dst: high, action: deny}
+  - {src: low, dst: ALL, action: deny}

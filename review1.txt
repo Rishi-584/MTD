@@ -1,0 +1,23 @@
+command 1 : in terminal 1
+
+docker run -it --rm --net=host osrg/ryu ryu-manager ryu.app.simple_switch_13
+
+
+command 2 : in terminal 2
+
+sudo python3 mininet_topo.py
+
+command 3 : in terminal 3
+
+source venv/bin/activate 
+sudo python3 mtd_controller.py
+
+or
+
+./run_controller_sudo.sh
+
+command 4: in terminal 4
+
+source venv/bin/activate 
+sudo python3 zone_scheduler.py
+
