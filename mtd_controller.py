@@ -75,6 +75,14 @@ class SimpleRESTHandler(BaseHTTPRequestHandler):
         except Exception as e:
             LOG.error(f"Error sending response: {e}")
 
+    def _send_sse_message(self, event, data):
+        """Send Server-Sent Event message"""
+        try:
+            message = f"event: {event}\ndata: {json.dumps(data)}\n\n"
+            self.wfile.write(message.encode('utf-8'))
+        except (ConnectionAbortedError, BrokenPipeError):
+            pass  # Client disconnected
+
     def do_GET(self):
         if self.path.startswith('/status'):
             self._send_json(self.server.app.get_status())
@@ -92,8 +100,70 @@ class SimpleRESTHandler(BaseHTTPRequestHandler):
                 self._send_json({'ip': ip})
             else:
                 self._send_json({'error': 'not_found'}, 404)
+        elif self.path.startswith('/host_logs_stream'):
+            # /host_logs_stream?host=h5 - Server-Sent Events for real-time streaming
+            try:
+                from urllib.parse import parse_qs, urlparse
+                parsed = urlparse(self.path)
+                params = parse_qs(parsed.query)
+                host = params.get('host', ['h1'])[0]
+
+                log_file = f"/tmp/{host}_agent.log"
+
+                # Send SSE headers
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/event-stream')
+                self.send_header('Cache-Control', 'no-cache')
+                self.send_header('Connection', 'keep-alive')
+                self.send_header('X-Accel-Buffering', 'no')  # Disable nginx buffering
+                self.end_headers()
+
+                # Send initial connection message
+                self._send_sse_message('connected', {'host': host, 'log_file': log_file})
+
+                # Stream logs using tail -f
+                import subprocess
+
+                if not os.path.exists(log_file):
+                    self._send_sse_message('error', {'error': 'log_file_not_found', 'host': host})
+                    return
+
+                # Start with last 50 lines
+                try:
+                    initial_lines = subprocess.check_output(['tail', '-n', '50', log_file]).decode('utf-8')
+                    for line in initial_lines.strip().split('\n'):
+                        if line:
+                            self._send_sse_message('log', {'line': line})
+                except:
+                    pass
+
+                # Now follow the file for new lines (tail -f)
+                process = subprocess.Popen(
+                    ['tail', '-f', '-n', '0', log_file],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    universal_newlines=True,
+                    bufsize=1
+                )
+
+                try:
+                    # Stream new lines as they appear
+                    for line in iter(process.stdout.readline, ''):
+                        if line:
+                            self._send_sse_message('log', {'line': line.rstrip()})
+                            self.wfile.flush()
+                except (BrokenPipeError, ConnectionAbortedError):
+                    # Client disconnected
+                    pass
+                finally:
+                    process.terminate()
+                    process.wait()
+
+            except Exception as e:
+                LOG.error(f"Stream error: {e}")
+
         elif self.path.startswith('/host_logs'):
-            # /host_logs?host=h5&lines=100
+            # /host_logs?host=h5&lines=100 (legacy polling endpoint)
             try:
                 from urllib.parse import parse_qs, urlparse
                 parsed = urlparse(self.path)
