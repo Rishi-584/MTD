@@ -71,8 +71,6 @@ class HostAgentHTTPHandler(BaseHTTPRequestHandler):
             content_length = int(self.headers.get('Content-Length', 0))
             body = self.rfile.read(content_length) if content_length > 0 else b''
             
-            # log(self.server.hostname, f"DEBUG: Raw Body: {body}")
-
             # 1. Parse JSON Payload
             try:
                 data = json.loads(body.decode('utf-8'))
@@ -84,7 +82,6 @@ class HostAgentHTTPHandler(BaseHTTPRequestHandler):
             # 2. Log Receipt
             source_host = data.get('source', 'unknown')
             session_id = data.get('session_id', 'unknown')
-            payload_content = data.get('payload', '')
             
             print("\n" + "="*70)
             log(self.server.hostname, f"📥 SECURE TRANSFER RECEIVED", "SUCCESS")
@@ -93,40 +90,22 @@ class HostAgentHTTPHandler(BaseHTTPRequestHandler):
             log(self.server.hostname, f"   Size: {len(body)} bytes")
             print("="*70 + "\n")
 
-        # Compute cryptographic verification fields
-        # Hash the received payload for integrity verification
-        payload_hash = hashlib.sha256(body).hexdigest()
+            # 3. Compute cryptographic verification fields
+            payload_hash = hashlib.sha256(body).hexdigest()
 
-        # Extract session ID if present
-        session_id = data.get('session_id', 'unknown')
-
-        # Send success response with acknowledgment and crypto verification
-        self.send_response(200)
-        self.send_header('Content-Type', 'application/json')
-        self.end_headers()
-
-        # Build response with all required verification fields
-        response = {
-            'status': 'ACK',
-            'message': 'Packet received and acknowledged',
-            'destination': self.server.hostname,  # This host is the destination
-            'sender': source_host,
-            'bytes_received': len(body),
-            'timestamp': time.time(),
-            'payload_hash': payload_hash,  # SHA-256 hash for integrity check
-            'session_id': session_id  # Session ID echoed back
-        }
-
-        # Sign the response with HMAC for authenticity
-        response_json = json.dumps(response, sort_keys=True)
-        signature = hmac.new(SECRET, response_json.encode(), hashlib.sha256).hexdigest()
-        response['signature'] = signature
-
-        self.wfile.write(json.dumps(response).encode())
-        log(self.server.hostname, f"✅ ACK sent to {source_host} (signed, hash: {payload_hash[:8]}...)")
+            # 4. Build Response
+            ack_response = {
+                'status': 'ACK',
+                'message': 'Packet received and acknowledged',
+                'destination': self.server.hostname,
+                'sender': source_host,
+                'bytes_received': len(body),
+                'timestamp': time.time(),
+                'payload_hash': payload_hash,
+                'session_id': session_id
+            }
 
             # 5. Generate HMAC-SHA256 Signature
-            # Signature covers the ACK response itself (to prove we generated this ACK)
             ack_bytes = json.dumps(ack_response, sort_keys=True).encode()
             signature = hmac.new(SECRET, ack_bytes, hashlib.sha256).hexdigest()
             ack_response['signature'] = signature
@@ -136,10 +115,8 @@ class HostAgentHTTPHandler(BaseHTTPRequestHandler):
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
             
-            response_json = json.dumps(ack_response)
-            self.wfile.write(response_json.encode())
-            
-            log(self.server.hostname, f"✅ ACK Sent (Signed)", "INFO")
+            self.wfile.write(json.dumps(ack_response).encode())
+            log(self.server.hostname, f"✅ ACK sent to {source_host} (signed, hash: {payload_hash[:8]}...)")
 
         except Exception as e:
             log(self.server.hostname, f"❌ Error processing POST: {e}", "ERROR")
