@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTD Host Agent Logs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Monaco', 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #4fc3f7;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-size: 12px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        select, button, input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e0e0e0;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover, button:hover, input:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #4fc3f7;
+        }
+
+        button {
+            font-weight: 600;
+        }
+
+        button.refresh {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+
+        button.clear {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+        }
+
+        button.auto {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border: none;
+        }
+
+        button.auto.active {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            box-shadow: 0 0 20px rgba(67, 233, 123, 0.5);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .stat-card .label {
+            font-size: 12px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4fc3f7;
+        }
+
+        .log-container {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            min-height: 600px;
+            max-height: 70vh;
+            overflow-y: auto;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .log-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .log-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .log-container::-webkit-scrollbar-thumb {
+            background: rgba(79, 195, 247, 0.5);
+            border-radius: 5px;
+        }
+
+        .log-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(79, 195, 247, 0.8);
+        }
+
+        .log-line {
+            margin: 2px 0;
+            padding: 4px 8px;
+            border-radius: 3px;
+            transition: background 0.2s ease;
+        }
+
+        .log-line:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .log-line.new {
+            animation: highlight 1s ease;
+        }
+
+        @keyframes highlight {
+            0% { background: rgba(67, 233, 123, 0.3); }
+            100% { background: transparent; }
+        }
+
+        /* Syntax highlighting for logs */
+        .log-line {
+            color: #e0e0e0;
+        }
+
+        .log-line:contains("[ERROR]") {
+            color: #ff5555;
+        }
+
+        .log-line:contains("[SUCCESS]") {
+            color: #50fa7b;
+        }
+
+        .log-line:contains("[WARN]") {
+            color: #ffb86c;
+        }
+
+        .log-line:contains("[INFO]") {
+            color: #8be9fd;
+        }
+
+        /* Highlight special patterns */
+        .timestamp {
+            color: #bd93f9;
+        }
+
+        .host {
+            color: #50fa7b;
+            font-weight: 600;
+        }
+
+        .level-ERROR {
+            color: #ff5555;
+            font-weight: bold;
+        }
+
+        .level-SUCCESS {
+            color: #50fa7b;
+            font-weight: bold;
+        }
+
+        .level-WARN {
+            color: #ffb86c;
+            font-weight: bold;
+        }
+
+        .level-INFO {
+            color: #8be9fd;
+        }
+
+        .no-logs {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .no-logs .emoji {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .status-indicator.connected {
+            background: #50fa7b;
+            box-shadow: 0 0 10px rgba(80, 250, 123, 0.5);
+        }
+
+        .status-indicator.disconnected {
+            background: #ff5555;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #4fc3f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                📋 Host Agent Logs
+                <span class="status-indicator" id="statusIndicator"></span>
+            </h1>
+            <div class="controls">
+                <div class="control-group">
+                    <label>Host:</label>
+                    <select id="hostSelect">
+                        <option value="h1">h1 (High)</option>
+                        <option value="h2">h2 (High)</option>
+                        <option value="h3">h3 (Medium)</option>
+                        <option value="h4">h4 (Medium)</option>
+                        <option value="h5" selected>h5 (Low)</option>
+                        <option value="h6">h6 (Low)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Lines:</label>
+                    <select id="linesSelect">
+                        <option value="50">50</option>
+                        <option value="100" selected>100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                </div>
+                <button class="refresh" onclick="fetchLogs()">🔄 Refresh</button>
+                <button class="auto" id="autoRefreshBtn" onclick="toggleAutoRefresh()">⏱️ Auto</button>
+                <button class="clear" onclick="clearLogs()">🗑️ Clear</button>
+                <a href="/" class="back-button">← Dashboard</a>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="label">Total Lines</div>
+                <div class="value" id="totalLines">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Displayed</div>
+                <div class="value" id="displayedLines">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Log File</div>
+                <div class="value" id="logFile" style="font-size: 14px; word-break: break-all;">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Last Update</div>
+                <div class="value" id="lastUpdate" style="font-size: 14px;">Never</div>
+            </div>
+        </div>
+
+        <div class="log-container" id="logContainer">
+            <div class="no-logs">
+                <div class="emoji">📭</div>
+                <div>No logs yet. Click Refresh to load logs.</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            MTD Host Agent Log Viewer | Logs from /tmp/{host}_agent.log | Press Refresh to update
+        </div>
+    </div>
+
+    <script>
+        let autoRefreshInterval = null;
+        let previousLogCount = 0;
+
+        function fetchLogs() {
+            const host = document.getElementById('hostSelect').value;
+            const lines = document.getElementById('linesSelect').value;
+            const container = document.getElementById('logContainer');
+            const statusIndicator = document.getElementById('statusIndicator');
+
+            statusIndicator.className = 'status-indicator';
+
+            fetch(`/host_logs?host=${host}&lines=${lines}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        container.innerHTML = `
+                            <div class="no-logs">
+                                <div class="emoji">❌</div>
+                                <div>Error: ${data.error}</div>
+                                <div style="margin-top: 10px; font-size: 12px;">
+                                    ${data.log_file || 'Log file not found'}
+                                </div>
+                            </div>
+                        `;
+                        statusIndicator.className = 'status-indicator disconnected';
+                        return;
+                    }
+
+                    // Update stats
+                    document.getElementById('totalLines').textContent = data.total_lines || 0;
+                    document.getElementById('displayedLines').textContent = data.lines.length;
+                    document.getElementById('logFile').textContent = data.log_file || '-';
+                    document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+
+                    // Render logs
+                    if (data.lines && data.lines.length > 0) {
+                        const isNewContent = data.lines.length !== previousLogCount;
+                        previousLogCount = data.lines.length;
+
+                        container.innerHTML = data.lines.map((line, index) => {
+                            return formatLogLine(line, index >= data.lines.length - 5 && isNewContent);
+                        }).join('');
+
+                        // Auto-scroll to bottom
+                        container.scrollTop = container.scrollHeight;
+                        statusIndicator.className = 'status-indicator connected';
+                    } else {
+                        container.innerHTML = `
+                            <div class="no-logs">
+                                <div class="emoji">📭</div>
+                                <div>No logs available for ${host}</div>
+                            </div>
+                        `;
+                        statusIndicator.className = 'status-indicator disconnected';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching logs:', error);
+                    container.innerHTML = `
+                        <div class="no-logs">
+                            <div class="emoji">⚠️</div>
+                            <div>Failed to fetch logs</div>
+                            <div style="margin-top: 10px; font-size: 12px;">${error.message}</div>
+                        </div>
+                    `;
+                    statusIndicator.className = 'status-indicator disconnected';
+                });
+        }
+
+        function formatLogLine(line, isNew) {
+            // Parse log line format: [HH:MM:SS] [host] LEVEL: message
+            const timestampMatch = line.match(/\[(\d{2}:\d{2}:\d{2})\]/);
+            const hostMatch = line.match(/\[(\w+)\]/g);
+            const levelMatch = line.match(/\s(ERROR|SUCCESS|WARN|INFO):/);
+
+            let formatted = line;
+
+            if (timestampMatch) {
+                formatted = formatted.replace(
+                    timestampMatch[0],
+                    `<span class="timestamp">${timestampMatch[0]}</span>`
+                );
+            }
+
+            if (hostMatch && hostMatch.length > 1) {
+                const hostTag = hostMatch[1];
+                formatted = formatted.replace(
+                    hostTag,
+                    `<span class="host">${hostTag}</span>`
+                );
+            }
+
+            if (levelMatch) {
+                const level = levelMatch[1];
+                formatted = formatted.replace(
+                    ` ${level}:`,
+                    ` <span class="level-${level}">${level}:</span>`
+                );
+            }
+
+            // Highlight emojis
+            formatted = formatted.replace(/(📥|📤|✅|❌|🔍|⚠️|⏱️)/g, '<span style="font-size: 16px;">$1</span>');
+
+            const newClass = isNew ? ' new' : '';
+            return `<div class="log-line${newClass}">${formatted}</div>`;
+        }
+
+        function toggleAutoRefresh() {
+            const btn = document.getElementById('autoRefreshBtn');
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+                btn.classList.remove('active');
+                btn.textContent = '⏱️ Auto';
+            } else {
+                autoRefreshInterval = setInterval(fetchLogs, 2000);
+                btn.classList.add('active');
+                btn.textContent = '⏱️ Auto (ON)';
+                fetchLogs(); // Fetch immediately
+            }
+        }
+
+        function clearLogs() {
+            const host = document.getElementById('hostSelect').value;
+            if (confirm(`Clear logs for ${host}? This will delete /tmp/${host}_agent.log`)) {
+                // Note: This would require a backend endpoint to actually delete the file
+                // For now, just show a message
+                alert('Log clearing would require backend implementation. Use: rm /tmp/' + host + '_agent.log');
+            }
+        }
+
+        // Event listeners
+        document.getElementById('hostSelect').addEventListener('change', () => {
+            previousLogCount = 0;
+            fetchLogs();
+        });
+
+        document.getElementById('linesSelect').addEventListener('change', fetchLogs);
+
+        // Initial load
+        fetchLogs();
+
+        // Auto-refresh every 5 seconds by default (disabled until user clicks)
+        // toggleAutoRefresh();
+    </script>
+</body>
+</html>
