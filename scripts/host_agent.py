@@ -15,10 +15,16 @@ import time
 import sys
 import json
 import requests
+import hashlib
+import hmac
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import socketserver
 
 # DNS resolution via controller
 CONTROLLER_API = "http://127.0.0.1:8000"
+
+# Secret key for HMAC (must match controller)
+SECRET = b'supersecret_test_key'  # Must match mtd_controller.py
 
 def log(host, msg, level="INFO"):
     """Log messages with timestamp and host identifier"""
@@ -60,58 +66,88 @@ class HostAgentHTTPHandler(BaseHTTPRequestHandler):
         log(self.server.hostname, f"GET request from {self.client_address[0]}")
 
     def do_POST(self):
-        """Handle POST requests (receive data from other hosts)"""
-        content_length = int(self.headers.get('Content-Length', 0))
-        body = self.rfile.read(content_length) if content_length > 0 else b''
-
-        # Get source information from headers or body
-        source_host = "unknown"
+        """Handle POST requests (Secure Data Transfer)"""
         try:
-            # Try to parse as JSON
-            if body:
-                data = json.loads(body.decode('utf-8'))
-                source_host = data.get('source', data.get('src', self.client_address[0]))
-                payload_preview = str(data.get('payload', data.get('data', '')))[:50]
+            content_length = int(self.headers.get('Content-Length', 0))
+            body = self.rfile.read(content_length) if content_length > 0 else b''
+            
+            # log(self.server.hostname, f"DEBUG: Raw Body: {body}")
 
-                print("\n" + "="*70)
-                log(self.server.hostname, f"📥 PACKET RECEIVED", "SUCCESS")
-                log(self.server.hostname, f"   From: {source_host} ({self.client_address[0]})")
-                log(self.server.hostname, f"   Size: {len(body)} bytes")
-                if payload_preview:
-                    log(self.server.hostname, f"   Data: {payload_preview}...")
-                print("="*70 + "\n")
-            else:
-                data = {}
-                log(self.server.hostname, f"Received empty payload from {self.client_address[0]}")
-        except Exception:
-            data = {'raw': body.decode('utf-8', errors='ignore')}
-            source_host = self.client_address[0]
+            # 1. Parse JSON Payload
+            try:
+                data = json.loads(body.decode('utf-8'))
+            except json.JSONDecodeError:
+                log(self.server.hostname, "❌ Invalid JSON received", "ERROR")
+                self.send_error(400, "Invalid JSON")
+                return
+
+            # 2. Log Receipt
+            source_host = data.get('source', 'unknown')
+            session_id = data.get('session_id', 'unknown')
+            payload_content = data.get('payload', '')
+            
             print("\n" + "="*70)
-            log(self.server.hostname, f"📥 PACKET RECEIVED (non-JSON)", "SUCCESS")
-            log(self.server.hostname, f"   From: {self.client_address[0]}")
+            log(self.server.hostname, f"📥 SECURE TRANSFER RECEIVED", "SUCCESS")
+            log(self.server.hostname, f"   From: {source_host}")
+            log(self.server.hostname, f"   Session: {session_id}")
             log(self.server.hostname, f"   Size: {len(body)} bytes")
             print("="*70 + "\n")
 
-        # Send success response with acknowledgment
-        self.send_response(200)
-        self.send_header('Content-Type', 'application/json')
-        self.end_headers()
+            # 3. Compute Payload Hash (SHA256) for Integrity
+            # The controller computes hash of the SORTED JSON string of the payload it sent.
+            # To verify integrity, we should hash what we received. 
+            # Ideally, we hash the RAW bytes we received to ensure exact match.
+            # However, the controller sends `json.dumps(transfer_payload, sort_keys=True)`.
+            # We receive those bytes.
+            
+            # Let's compute hash of the body directly (which is the bytes of the json string)
+            # BUT, requests.post might affect formatting (whitespace).
+            # Controller expectations: "Calculated SHA256 of the raw payload we are sending"
+            # So we should return the hash of what we received.
+            
+            # To be robust against whitespace changes during transport (which shouldn't happen with raw TCP but typical with parsing):
+            # We re-serialize the data to sorted JSON to ensure consistent hashing, 
+            # OR we try to match exactly what the controller did.
+            # The controller code: expected_hash = hashlib.sha256(raw_payload_bytes).hexdigest()
+            # So we should hash the sorted json of the data we parsed.
+            
+            received_normalized = json.dumps(data, sort_keys=True).encode()
+            payload_hash = hashlib.sha256(received_normalized).hexdigest()
 
-        response = {
-            'status': 'ACK',
-            'message': 'Packet received and acknowledged',
-            'receiver': self.server.hostname,
-            'sender': source_host,
-            'bytes_received': len(body),
-            'timestamp': time.time()
-        }
-        self.wfile.write(json.dumps(response).encode())
-        log(self.server.hostname, f"✅ ACK sent to {source_host}")
+            # 4. Construct ACK Response
+            ack_response = {
+                "status": "ACK",
+                "session_id": session_id,
+                "destination": self.server.hostname,
+                "payload_hash": payload_hash,
+                "timestamp": time.time()
+            }
 
-class ThreadedHTTPServer(HTTPServer):
-    """HTTP server with hostname attribute"""
+            # 5. Generate HMAC-SHA256 Signature
+            # Signature covers the ACK response itself (to prove we generated this ACK)
+            ack_bytes = json.dumps(ack_response, sort_keys=True).encode()
+            signature = hmac.new(SECRET, ack_bytes, hashlib.sha256).hexdigest()
+            ack_response['signature'] = signature
+
+            # 6. Send Response
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            
+            response_json = json.dumps(ack_response)
+            self.wfile.write(response_json.encode())
+            
+            log(self.server.hostname, f"✅ ACK Sent (Signed)", "INFO")
+
+        except Exception as e:
+            log(self.server.hostname, f"❌ Error processing POST: {e}", "ERROR")
+            self.send_error(500, str(e))
+
+class ThreadedHTTPServer(socketserver.ThreadingMixIn, HTTPServer):
+    """HTTP server with hostname attribute and threading support"""
+    daemon_threads = True
     def __init__(self, server_address, RequestHandlerClass, hostname):
-        super().__init__(server_address, RequestHandlerClass)
+        HTTPServer.__init__(self, server_address, RequestHandlerClass)
         self.hostname = hostname
 
 def run_server(hostname, port=8080, https=False):
@@ -128,6 +164,7 @@ def run_server(hostname, port=8080, https=False):
 
     server = None
     try:
+        # Bind to 0.0.0.0 to allow external connections (Mininet/NAT)
         server = ThreadedHTTPServer(('0.0.0.0', port), HostAgentHTTPHandler, hostname)
         log(hostname, f"🚀 Server started on 0.0.0.0:{port}")
         log(hostname, f"Listening for connections...")
@@ -147,14 +184,6 @@ def run_server(hostname, port=8080, https=False):
 def run_client(hostname, target, port=8080, https=False, count=None, interval=2):
     """
     Run client that sends requests to target host
-
-    Args:
-        hostname: Source host identifier (e.g., 'h1')
-        target: Target hostname (e.g., 'h2')
-        port: Target port number
-        https: If True, use HTTPS
-        count: Number of messages to send (None = infinite)
-        interval: Seconds between messages
     """
     protocol = "https" if https else "http"
     log(hostname, f"🔄 Client mode: sending to {target}")
