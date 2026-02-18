@@ -194,6 +194,7 @@ async function sendSecureData() {
 
         if (data.status === 'error') {
             await typeToTerminal(`echo "System Error: ${data.msg}"`, termBody, 'error');
+            if (data.trace) renderTrace(data.trace, termBody, c1, c2);
             return;
         }
 
