@@ -134,6 +134,46 @@ def main():
         print(f"[*] {h.name}: Starting Host Agent...")
         h.cmd(cmd)
 
+    # ---------------------------------------------------------
+    # WAIT FOR AGENTS TO BE READY (Blocking Check)
+    # ---------------------------------------------------------
+    print("\n>>> VERIFYING AGENT HEALTH (Port 8080) <<<")
+    import socket
+    
+    def check_agent_port(host_obj, port=8080, retries=30, delay=0.5):
+        """Checks if the agent is listening on the host's loopback/interface"""
+        # We use a trick: try to connect to localhost INSIDE the container/namespace
+        # Since we are outside, we can use the host's cmd to run netcat or python check
+        check_cmd = f"python3 -c 'import socket; s=socket.socket(); s.settimeout(0.5); print(s.connect_ex((\"127.0.0.1\", {port})))'"
+        
+        for i in range(retries):
+            try:
+                result = host_obj.cmd(check_cmd).strip()
+                if result == "0":
+                    return True
+            except:
+                pass
+            time.sleep(delay)
+        return False
+
+    all_ready = True
+    for h in net.hosts:
+        print(f"[*] Waiting for {h.name} agent...", end="", flush=True)
+        if check_agent_port(h):
+            print(" ✅ READY")
+        else:
+            print(" ❌ TIMEOUT (Failed to start)")
+            all_ready = False
+            # Check logs
+            log_tail = h.cmd(f"tail -n 5 /tmp/{h.name}_agent.log")
+            print(f"    Log tail:\n{log_tail}")
+
+    if not all_ready:
+        print("\n⚠️  WARNING: Some agents failed to start. Simulation may be unstable.")
+        print("    Check /tmp/h*_agent.log for details.")
+    else:
+        print("\n✅ ALL HOST AGENTS ACTIVE")
+
     print("\n✅ SIMULATION FULLY RUNNING")
     print("   - Controller API: http://127.0.0.1:8000")
     print("   - Topology Agent: http://127.0.0.1:8888")

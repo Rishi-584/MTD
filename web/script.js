@@ -25,9 +25,9 @@ function renderNetworkConfig(data) {
     // Using static definition for clarity based on requirements, but could be dynamic
     if (container.innerHTML.trim() === '') {
         const zones = [
-            { name: 'HIGH', host: 'h1, h2', interval: '40s', color: '#ef4444', class: 'badge-high' },
-            { name: 'MEDIUM', host: 'h3, h4', interval: '20s', color: '#fbbf24', class: 'badge-med' },
-            { name: 'LOW', host: 'h5, h6', interval: '10s', color: '#22c55e', class: 'badge-low' },
+            { name: 'HIGH', host: 'h1, h2', interval: '90s', color: '#ef4444', class: 'badge-high' },
+            { name: 'MEDIUM', host: 'h3, h4', interval: '60s', color: '#fbbf24', class: 'badge-med' },
+            { name: 'LOW', host: 'h5, h6', interval: '40s', color: '#22c55e', class: 'badge-low' },
         ];
 
         container.innerHTML = zones.map(z => `

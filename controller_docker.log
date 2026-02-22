@@ -1,0 +1,53 @@
+loading app mtd_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app mtd_controller.py of MTDController
+2026-02-21 15:17:45,780 INFO REST API started. Dashboard: http://127.0.0.1:8000/
+REST API started. Dashboard: http://127.0.0.1:8000/
+2026-02-21 15:17:45,784 INFO Policies loaded: ['periodic_shuffle', 'zones', 'acls']
+Policies loaded: ['periodic_shuffle', 'zones', 'acls']
+2026-02-21 15:17:45,787 INFO MTDController initialized with Risk-Based NAT Hopping
+MTDController initialized with Risk-Based NAT Hopping
+instantiating app ryu.controller.ofp_handler of OFPHandler
+2026-02-21 15:17:45,946 INFO Switch connected: 1
+Switch connected: 1
+2026-02-21 15:18:04,357 INFO [POLICY] Source Zone: HIGH
+[POLICY] Source Zone: HIGH
+2026-02-21 15:18:04,358 INFO [POLICY] Destination Zone: LOW
+[POLICY] Destination Zone: LOW
+2026-02-21 15:18:04,358 INFO [POLICY] Rule Matched: HIGH -> ALL (ALLOW)
+[POLICY] Rule Matched: HIGH -> ALL (ALLOW)
+127.0.0.1 - - [21/Feb/2026 15:18:04] "POST /sim/test_ping HTTP/1.1" 200 -
+2026-02-21 15:18:04,991 INFO [POLICY] Source Zone: MEDIUM
+[POLICY] Source Zone: MEDIUM
+2026-02-21 15:18:04,992 INFO [POLICY] Destination Zone: HIGH
+[POLICY] Destination Zone: HIGH
+2026-02-21 15:18:04,992 INFO [POLICY] Rule Matched: MEDIUM -> HIGH (DENY)
+[POLICY] Rule Matched: MEDIUM -> HIGH (DENY)
+127.0.0.1 - - [21/Feb/2026 15:18:04] "POST /sim/test_ping HTTP/1.1" 200 -
+2026-02-21 15:18:05,726 INFO [POLICY] Source Zone: HIGH
+[POLICY] Source Zone: HIGH
+2026-02-21 15:18:05,727 INFO [POLICY] Destination Zone: MEDIUM
+[POLICY] Destination Zone: MEDIUM
+2026-02-21 15:18:05,727 INFO [POLICY] Rule Matched: HIGH -> ALL (ALLOW)
+[POLICY] Rule Matched: HIGH -> ALL (ALLOW)
+127.0.0.1 - - [21/Feb/2026 15:18:05] "POST /sim/test_ping HTTP/1.1" 200 -
+2026-02-21 15:18:06,373 INFO [POLICY] Source Zone: LOW
+[POLICY] Source Zone: LOW
+2026-02-21 15:18:06,374 INFO [POLICY] Destination Zone: LOW
+[POLICY] Destination Zone: LOW
+2026-02-21 15:18:06,374 INFO [POLICY] Rule Matched: LOW -> LOW (ALLOW)
+[POLICY] Rule Matched: LOW -> LOW (ALLOW)
+127.0.0.1 - - [21/Feb/2026 15:18:06] "POST /sim/test_ping HTTP/1.1" 200 -
+2026-02-21 15:18:07,021 INFO [POLICY] Source Zone: MEDIUM
+[POLICY] Source Zone: MEDIUM
+2026-02-21 15:18:07,021 INFO [POLICY] Destination Zone: LOW
+[POLICY] Destination Zone: LOW
+2026-02-21 15:18:07,022 INFO [POLICY] Rule Matched: MEDIUM -> LOW (ALLOW)
+[POLICY] Rule Matched: MEDIUM -> LOW (ALLOW)
+127.0.0.1 - - [21/Feb/2026 15:18:07] "POST /sim/test_ping HTTP/1.1" 200 -
+2026-02-21 15:18:07,674 INFO [POLICY] Source Zone: MEDIUM
+[POLICY] Source Zone: MEDIUM
+2026-02-21 15:18:07,674 INFO [POLICY] Destination Zone: MEDIUM
+[POLICY] Destination Zone: MEDIUM
+2026-02-21 15:18:07,674 INFO [POLICY] Rule Matched: MEDIUM -> MEDIUM (ALLOW)
+[POLICY] Rule Matched: MEDIUM -> MEDIUM (ALLOW)

@@ -16,6 +16,8 @@ zones:
 # Access Control List (Sequential Evaluation)
 acls:
   - {src: high, dst: ALL, action: allow}
+  - {src: medium, dst: medium, action: allow}
   - {src: medium, dst: low, action: allow}
   - {src: medium, dst: high, action: deny}
+  - {src: low, dst: low, action: allow}
   - {src: low, dst: ALL, action: deny}
