@@ -218,6 +218,8 @@ class SimpleRESTHandler(BaseHTTPRequestHandler):
             body = self.rfile.read(length)
             req = json.loads(body.decode())
             hosts = req.get('hosts', [])
+            if hosts:
+                hosts = [str(h).strip().lower() for h in hosts]
             policy = req.get('policy', None)
             shuffle_id = self.server.app.trigger_shuffle(hosts, policy)
             self._send_json({'shuffle_id': shuffle_id})
@@ -289,6 +291,8 @@ class SimpleRESTHandler(BaseHTTPRequestHandler):
                 
                 src = req.get('src_host') or req.get('src')
                 dst = req.get('dst_host') or req.get('dst')
+                if src: src = str(src).strip().lower()
+                if dst: dst = str(dst).strip().lower()
                 payload = req.get('payload', 'Test Payload')
                 
                 # [NEW] LOCK MTD FOR SESSION STABILITY
@@ -678,6 +682,8 @@ class SimpleRESTHandler(BaseHTTPRequestHandler):
             req = json.loads(body.decode())
             src_host = req.get('src_host') or req.get('src')
             dst_host = req.get('dst_host') or req.get('dst')
+            if src_host: src_host = str(src_host).strip().lower()
+            if dst_host: dst_host = str(dst_host).strip().lower()
             allowed = self.server.app.check_connectivity(src_host, dst_host)
             if allowed:
                 self._send_json({'status': 'success', 'msg': 'Ping Reply'})
