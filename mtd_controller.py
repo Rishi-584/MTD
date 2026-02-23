@@ -67,7 +67,7 @@ TIMEOUT_NAT_IDLE = 0    # NAT flows: permanent (replaced by shuffle)
 TIMEOUT_NAT_HARD = 0    # NAT flows: permanent
 
 # MTD shuffle intervals (must all be > TIMEOUT_L2_IDLE to avoid stale-flow conflicts)
-SHUFFLE_INTERVAL = {'low': 90, 'medium': 120, 'high': 180}
+SHUFFLE_INTERVAL = {'low': 80, 'medium': 100, 'high': 120}
 # ---------------------------------------------------------------------------
 
 try:
@@ -1166,7 +1166,8 @@ class MTDController(app_manager.RyuApp):
                         'zone':     self.get_host_zone(h),
                         'risk':     self.get_host_zone(h),
                         'old_ip':   old_pub or 'N/A',
-                        'new_ip':   new_pub
+                        'new_ip':   new_pub,
+                        'type':     'triggered' if entry.get('policy') == 'manual' else 'scheduled'
                     })
                     self.logs.append({'shuffle_id': entry['id'], 'host': h,
                                        'old_ip': old_pub, 'new_ip': new_pub,

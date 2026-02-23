@@ -97,7 +97,7 @@ function renderHistoryTable(history) {
         row.innerHTML = `
             <td style="color:var(--text-muted); font-size:0.85em;">${evt.time_str}</td>
             <td style="font-weight:600;">${evt.host.toUpperCase()}</td>
-            <td><span class="badge ${riskClass}">${evt.type === 'transfer_hop' ? 'FORCED' : 'SCHEDULED'}</span></td>
+            <td><span class="badge ${riskClass}">${evt.type === 'triggered' ? 'TRIGGERED' : 'SCHEDULED'}</span></td>
             <td>
                 <span style="color:var(--danger); text-decoration:line-through;">${evt.old_ip}</span> 
                 <span style="color:var(--text-muted); margin:0 5px;">➜</span> 
@@ -118,7 +118,7 @@ async function triggerShuffle(policy) {
         await fetch(`${BASE_URL}/shuffle`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ hosts: ['h1', 'h2'], policy: policy })
+            body: JSON.stringify({ hosts: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], policy: policy })
         });
 
         setTimeout(() => {
