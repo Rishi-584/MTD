@@ -1,0 +1,28 @@
+1 RLock(s) were not greened, to fix this error make sure you run eventlet.monkey_patch() before importing any other modules.
+loading app mtd_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app mtd_controller.py of MTDController
+Traceback (most recent call last):
+  File "/home/kishan_22064/Documents/Final_Year_Proj/mtd_repo_final_back1/venv_ryu/bin/ryu-manager", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/kishan_22064/Documents/Final_Year_Proj/mtd_repo_final_back1/venv_ryu/lib/python3.11/site-packages/ryu/cmd/manager.py", line 101, in main
+    services.extend(app_mgr.instantiate_apps(**contexts))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kishan_22064/Documents/Final_Year_Proj/mtd_repo_final_back1/venv_ryu/lib/python3.11/site-packages/ryu/base/app_manager.py", line 509, in instantiate_apps
+    self._instantiate(app_name, cls, *args, **kwargs)
+  File "/home/kishan_22064/Documents/Final_Year_Proj/mtd_repo_final_back1/venv_ryu/lib/python3.11/site-packages/ryu/base/app_manager.py", line 495, in _instantiate
+    app = cls(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/kishan_22064/Documents/Final_Year_Proj/MTD/mtd_controller.py", line 759, in __init__
+    self._start_rest_api()
+  File "/home/kishan_22064/Documents/Final_Year_Proj/MTD/mtd_controller.py", line 933, in _start_rest_api
+    server = ThreadedHTTPServer(('0.0.0.0', 8000), SimpleRESTHandler)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/kishan_22064/.pyenv/versions/3.11.9/lib/python3.11/socketserver.py", line 456, in __init__
+    self.server_bind()
+  File "/home/kishan_22064/.pyenv/versions/3.11.9/lib/python3.11/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/home/kishan_22064/.pyenv/versions/3.11.9/lib/python3.11/socketserver.py", line 472, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use

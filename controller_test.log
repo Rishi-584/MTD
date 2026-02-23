@@ -1,5 +1,16 @@
-WARNING: Ryu not found. Running in Mock/Simulation mode.
-Traceback (most recent call last):
-  File "/home/kishan_22064/Documents/Final_Year_Proj/MTD/mtd_controller.py", line 1497, in <module>
-    from ryu.cmd import manager
-ModuleNotFoundError: No module named 'ryu'
+1 RLock(s) were not greened, to fix this error make sure you run eventlet.monkey_patch() before importing any other modules.
+loading app mtd_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app mtd_controller.py of MTDController
+2026-02-23 12:27:51,409 INFO REST API started. Dashboard: http://127.0.0.1:8000/
+REST API started. Dashboard: http://127.0.0.1:8000/
+2026-02-23 12:27:51,412 INFO Policies loaded: ['periodic_shuffle', 'zones', 'acls']
+Policies loaded: ['periodic_shuffle', 'zones', 'acls']
+2026-02-23 12:27:51,413 INFO MTDController initialized with Risk-Based NAT Hopping
+MTDController initialized with Risk-Based NAT Hopping
+instantiating app ryu.controller.ofp_handler of OFPHandler
+2026-02-23 12:27:52,333 INFO Switch connected: 1
+Switch connected: 1
+127.0.0.1 - - [23/Feb/2026 12:30:27] "GET /status HTTP/1.1" 200 -
+127.0.0.1 - - [23/Feb/2026 12:33:14] "GET /status HTTP/1.1" 200 -
+127.0.0.1 - - [23/Feb/2026 12:33:46] "GET /status HTTP/1.1" 200 -

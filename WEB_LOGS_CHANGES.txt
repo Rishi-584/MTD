@@ -1,0 +1,354 @@
+================================================================================
+WEB UI FOR HOST AGENT LOGS - IMPLEMENTATION SUMMARY
+================================================================================
+
+Date: 2026-02-18
+Feature: Real-time web-based log viewer for host agent logs
+
+================================================================================
+FILES CREATED/MODIFIED
+================================================================================
+
+NEW FILES:
+----------
+1. web/logs.html
+   - Beautiful dark-themed log viewer interface
+   - Real-time log display with syntax highlighting
+   - Auto-refresh every 2 seconds (toggleable)
+   - Support for all hosts (h1-h6)
+   - Adjustable line count (50-1000)
+   - Stats dashboard (total lines, displayed, log file path, last update)
+   - Auto-scroll to newest logs
+   - Color-coded log levels (ERROR=red, SUCCESS=green, WARN=orange, INFO=blue)
+   - Emoji highlighting for quick visual scanning
+
+2. WEB_LOGS_GUIDE.md
+   - Comprehensive user guide
+   - Feature descriptions
+   - Usage instructions
+   - Troubleshooting tips
+   - API documentation
+   - Example use cases
+
+MODIFIED FILES:
+---------------
+1. mtd_controller.py
+   - Added /host_logs endpoint (lines 87-112)
+   - Returns logs from /tmp/{host}_agent.log
+   - Supports query parameters: host={h1-h6}, lines={count}
+   - Returns JSON with log lines array and metadata
+   - Proper error handling for missing log files
+
+2. web/index.html
+   - Added "📋 Host Logs" button to header (line 24-26)
+   - Links to /logs.html for easy access from dashboard
+
+================================================================================
+FEATURES
+================================================================================
+
+Web Interface:
+--------------
+✅ Real-time log viewing for any host (h1-h6)
+✅ Auto-refresh mode (updates every 2 seconds)
+✅ Manual refresh on demand
+✅ Adjustable log history (50, 100, 200, 500, 1000 lines)
+✅ Syntax highlighting:
+   - Timestamps [HH:MM:SS] in purple
+   - Hostnames [h1] in green bold
+   - Log levels (ERROR/SUCCESS/WARN/INFO) color-coded
+   - Emojis (📥 📤 ✅ ❌ 🔍 ⚠️) enlarged
+✅ Live statistics:
+   - Total lines in log file
+   - Lines currently displayed
+   - Log file path
+   - Last update timestamp
+✅ Connection status indicator (green=connected, red=error)
+✅ Auto-scroll to newest entries
+✅ Responsive dark theme design
+✅ Link back to main dashboard
+
+API Endpoint:
+-------------
+GET /host_logs?host={host}&lines={lines}
+
+Parameters:
+  - host: h1, h2, h3, h4, h5, or h6
+  - lines: number of recent lines to return (default: 100)
+
+Response (success):
+{
+  "host": "h5",
+  "lines": ["[12:34:56] [h5] INFO: Server started", ...],
+  "total_lines": 523,
+  "log_file": "/tmp/h5_agent.log"
+}
+
+Response (error):
+{
+  "error": "log_file_not_found",
+  "host": "h5",
+  "log_file": "/tmp/h5_agent.log"
+}
+
+================================================================================
+HOW TO USE
+================================================================================
+
+Access Methods:
+---------------
+1. From Dashboard: Click "📋 Host Logs" button in header
+2. Direct URL: http://127.0.0.1:8000/logs.html
+3. API: curl "http://127.0.0.1:8000/host_logs?host=h5&lines=100"
+
+Typical Workflow:
+-----------------
+1. Start controller: sudo docker run --rm -it --network host mtd-controller
+2. Start Mininet: sudo python3 mininet_topo.py
+3. Open browser: http://127.0.0.1:8000/
+4. Click "📋 Host Logs"
+5. Select host (h5 for low zone)
+6. Enable auto-refresh
+7. Watch logs update in real-time as packets transfer
+
+Use Cases:
+----------
+✓ Monitor packet transfers in real-time
+✓ Debug connection failures
+✓ Verify host agent status
+✓ Watch MTD IP rotation impact on transfers
+✓ Correlate sender and receiver logs
+✓ View cryptographic verification messages
+✓ Track DNS resolution during IP changes
+
+================================================================================
+TECHNICAL IMPLEMENTATION
+================================================================================
+
+Controller Changes (mtd_controller.py):
+---------------------------------------
+Added new GET endpoint after line 87:
+
+```python
+elif self.path.startswith('/host_logs'):
+    # /host_logs?host=h5&lines=100
+    try:
+        from urllib.parse import parse_qs, urlparse
+        parsed = urlparse(self.path)
+        params = parse_qs(parsed.query)
+        host = params.get('host', ['h1'])[0]
+        lines = int(params.get('lines', ['100'])[0])
+
+        log_file = f"/tmp/{host}_agent.log"
+        if os.path.exists(log_file):
+            with open(log_file, 'r') as f:
+                all_lines = f.readlines()
+                recent_lines = all_lines[-lines:] if len(all_lines) > lines else all_lines
+                self._send_json({
+                    'host': host,
+                    'lines': recent_lines,
+                    'total_lines': len(all_lines),
+                    'log_file': log_file
+                })
+        else:
+            self._send_json({'error': 'log_file_not_found', 'host': host, 'log_file': log_file}, 404)
+    except Exception as e:
+        self._send_json({'error': str(e)}, 500)
+```
+
+Web UI Architecture (logs.html):
+---------------------------------
+- Modern gradient dark theme (similar to main dashboard)
+- Flexbox/Grid layout for responsive design
+- JavaScript for:
+  - AJAX log fetching every 2s (when auto-refresh on)
+  - Log line formatting and syntax highlighting
+  - Auto-scroll to bottom
+  - Dynamic stat updates
+- CSS animations for new log lines
+- Custom scrollbar styling
+- Status indicator with live connection feedback
+
+Syntax Highlighting Algorithm:
+-------------------------------
+1. Parse log line with regex for timestamp, hostname, level
+2. Wrap each component in styled <span> tags
+3. Color-code based on log level:
+   - ERROR → red (#ff5555)
+   - SUCCESS → green (#50fa7b)
+   - WARN → orange (#ffb86c)
+   - INFO → blue (#8be9fd)
+4. Enlarge emojis for visibility
+5. Apply "new" class to recent logs (animation)
+
+================================================================================
+EXAMPLE OUTPUTS
+================================================================================
+
+Sender Log (h1):
+----------------
+[12:34:56] [h1] INFO: 📤 SENDING PACKET
+[12:34:56] [h1] INFO:    To: h2 (172.16.0.198:8080)
+[12:34:56] [h1] INFO:    Message ID: #1
+[12:34:56] [h1] INFO: 🔍 Resolving h2...
+[12:34:56] [h1] INFO: ✓ Resolved h2 -> 172.16.0.198
+[12:34:56] [h1] SUCCESS: ✅ ACKNOWLEDGMENT RECEIVED
+[12:34:56] [h1] SUCCESS:    From: h2 (172.16.0.198)
+[12:34:56] [h1] SUCCESS:    Status: ACK
+[12:34:56] [h1] SUCCESS:    Bytes delivered: 234
+
+Receiver Log (h2):
+------------------
+[12:34:56] [h2] SUCCESS: 📥 SECURE TRANSFER RECEIVED
+[12:34:56] [h2] SUCCESS:    From: h1
+[12:34:56] [h2] SUCCESS:    Session: uuid-12345
+[12:34:56] [h2] SUCCESS:    Size: 234 bytes
+[12:34:56] [h2] INFO: ✅ ACK sent to h1 (signed, hash: a7f3b2c1...)
+
+Connection Error:
+-----------------
+[12:34:56] [h1] ERROR: ❌ Connection refused to 172.16.0.198:8080
+[12:34:56] [h1] ERROR: DNS resolution failed for h2
+
+================================================================================
+BENEFITS
+================================================================================
+
+For Users:
+----------
+✅ No need to SSH or use terminal for log viewing
+✅ Beautiful, easy-to-read interface
+✅ Real-time updates without manual refresh
+✅ Can monitor multiple hosts (open multiple tabs)
+✅ Perfect for demonstrations and presentations
+✅ Quick debugging with color-coded errors
+
+For Developers:
+---------------
+✅ Easy to extend with more features
+✅ Clean REST API for programmatic access
+✅ Simple JavaScript for maintenance
+✅ Reusable log formatting functions
+✅ Clear separation of concerns (API + UI)
+
+For Demonstrations:
+-------------------
+✅ Show live packet flow to audience
+✅ Display real cryptographic verification
+✅ Demonstrate MTD IP rotation impact
+✅ Visual proof of acknowledgments
+✅ Professional, polished appearance
+
+================================================================================
+TESTING
+================================================================================
+
+To verify the feature works:
+
+1. Start system:
+   sudo docker run --rm -it --network host mtd-controller
+   sudo python3 mininet_topo.py
+
+2. Access log viewer:
+   http://127.0.0.1:8000/logs.html
+
+3. Select h5, enable auto-refresh
+
+4. Send test packet:
+   curl -X POST http://127.0.0.1:8000/sim/secure_transfer \
+     -d '{"src":"h1","dst":"h5","payload":"test"}'
+
+5. Watch logs update in browser showing:
+   - h1 sending packet
+   - h5 receiving packet
+   - Acknowledgment flow
+   - Cryptographic verification
+
+6. Test error case:
+   mininet> h5 killall python3
+   Send packet again → should see connection refused error
+
+7. Test multiple hosts:
+   Open tabs for h1 and h5 simultaneously
+   Watch both sender and receiver logs live
+
+================================================================================
+FUTURE ENHANCEMENTS
+================================================================================
+
+Possible additions:
+- URL parameters (?host=h5&lines=200&auto=true)
+- Keyboard shortcuts (R=refresh, A=auto, 1-6=switch host)
+- Log filtering by level (show only errors)
+- Search/highlight functionality
+- Download logs as file
+- Clear logs via UI (currently requires terminal)
+- WebSocket for push updates (instead of polling)
+- Log comparison view (side-by-side hosts)
+- Graphical timeline of events
+
+================================================================================
+COMPATIBILITY
+================================================================================
+
+Browser Requirements:
+- Modern browsers with ES6 support
+- Chrome 60+, Firefox 55+, Safari 11+, Edge 79+
+
+Server Requirements:
+- Python 3.8+ with urllib.parse
+- OS with /tmp directory (Linux/Unix)
+- Read permissions on /tmp/{host}_agent.log files
+
+Network Requirements:
+- Controller accessible on port 8000
+- Same network as browser (or NAT/port forwarding)
+
+================================================================================
+MAINTENANCE NOTES
+================================================================================
+
+Log File Management:
+--------------------
+- Logs stored in /tmp/{host}_agent.log
+- Cleared on system reboot (tmpfs)
+- Manual clear: rm /tmp/h*_agent.log
+- No automatic rotation (implement if needed)
+- Size limited by available /tmp space
+
+Performance Considerations:
+---------------------------
+- Auto-refresh every 2s = 30 requests/minute/host
+- With 6 hosts monitored = 180 requests/minute
+- Light load for local testing
+- For production, consider WebSockets
+
+Security Considerations:
+------------------------
+- Log files may contain sensitive data
+- No authentication on /host_logs endpoint
+- Assumes trusted network environment
+- For production, add auth/access control
+
+================================================================================
+SUMMARY
+================================================================================
+
+Successfully implemented a beautiful, functional web UI for viewing host agent
+logs in real-time. The interface provides:
+
+✅ Live monitoring of all hosts
+✅ Syntax-highlighted, color-coded logs
+✅ Auto-refresh for hands-free operation
+✅ Professional appearance for demos
+✅ Easy debugging with clear error display
+✅ Complete packet transfer visibility
+
+Access at: http://127.0.0.1:8000/logs.html
+
+This completes the MTD system with full visibility into packet transfers,
+acknowledgments, and cryptographic verification at the application layer.
+
+================================================================================
+END OF IMPLEMENTATION SUMMARY
+================================================================================
