@@ -19,9 +19,7 @@ Timeout strategy:
                            before the next hop occurs — zero stale-flow conflicts)
 
 Shuffle intervals:
-  LOW zone   = 90 s
-  MEDIUM zone= 120 s
-  HIGH zone  = 180 s
+  All zones  = random 120-150 s per cycle (unpredictable to attacker)
 
 All CRITICAL bugs from initial review are fixed (see BUG_REPORT.md for details).
 """
@@ -67,7 +65,7 @@ TIMEOUT_NAT_IDLE = 0    # NAT flows: permanent (replaced by shuffle)
 TIMEOUT_NAT_HARD = 0    # NAT flows: permanent
 
 # MTD shuffle intervals (must all be > TIMEOUT_L2_IDLE to avoid stale-flow conflicts)
-SHUFFLE_INTERVAL = {'low': 80, 'medium': 100, 'high': 120}
+SHUFFLE_INTERVAL_RANGE = (120, 150)   # random interval per rotation cycle (seconds)
 # ---------------------------------------------------------------------------
 
 try:
@@ -1046,30 +1044,32 @@ class MTDController(app_manager.RyuApp):
         LOG.info("REST API started. Dashboard: http://127.0.0.1:8000/")
 
     # -------------------------------------------------------------------------
-    # Periodic MTD shuffle loop (LOW=90s, MEDIUM=120s, HIGH=180s)
+    # Periodic MTD shuffle loop (random 120-150s per host per cycle)
     # -------------------------------------------------------------------------
     def _start_periodic_loop(self):
         threading.Thread(target=self._periodic_shuffle_loop, daemon=True).start()
 
     def _periodic_shuffle_loop(self):
         """
-        Shuffle interval design rationale:
-          Table 1 L2/IP flows have idle_timeout=60 s.
-          ALL zone shuffle intervals (90/120/180 s) exceed 60 s.
-          Therefore, by the time the new public IP is assigned, the old
-          L2 flows have already expired from OVS.  This guarantees:
-            (a) No stale-flow packet misdirection after a hop.
-            (b) The first post-hop packet triggers a clean PacketIn →
-                new L2 flows are installed with the new public IP.
+        Each host gets a random shuffle interval drawn from
+        SHUFFLE_INTERVAL_RANGE (120-150 s) every rotation cycle.
+        A new random interval is picked after each shuffle so the
+        timing is unpredictable to an attacker.
+        All intervals exceed the L2 idle_timeout (60 s), guaranteeing
+        stale flows expire before the next hop.
         """
         while True:
             time.sleep(5)
             with self.lock:
                 now     = time.time()
-                targets = [h for h, d in list(self.host_map.items())
-                           if d.get('ip') and
-                           now - d.get('last_shuffle_ts', d['ts']) >=
-                           SHUFFLE_INTERVAL.get(self.get_host_zone(h), 300)]
+                targets = []
+                for h, d in list(self.host_map.items()):
+                    if not d.get('ip'):
+                        continue
+                    interval = d.get('shuffle_interval',
+                                     random.randint(*SHUFFLE_INTERVAL_RANGE))
+                    if now - d.get('last_shuffle_ts', d['ts']) >= interval:
+                        targets.append(h)
 
             for h in targets:
                 LOG.info("MTD rotation: %s (zone=%s)", h, self.get_host_zone(h))
@@ -1085,7 +1085,8 @@ class MTDController(app_manager.RyuApp):
             hosts = {}
             for h, d in self.host_map.items():
                 zone     = self.get_host_zone(h)
-                interval = SHUFFLE_INTERVAL.get(zone, 300)
+                interval = d.get('shuffle_interval',
+                                 random.randint(*SHUFFLE_INTERVAL_RANGE))
                 last     = d.get('last_shuffle_ts', d['ts'])
                 hosts[h] = {**d, 'risk': zone, 'interval': interval,
                              'next_hop_in': max(0, int(last + interval - now))}
@@ -1159,6 +1160,7 @@ class MTDController(app_manager.RyuApp):
                     self.host_map[h]['ip']              = new_pub
                     self.host_map[h]['ts']              = time.time()
                     self.host_map[h]['last_shuffle_ts'] = time.time()
+                    self.host_map[h]['shuffle_interval'] = random.randint(*SHUFFLE_INTERVAL_RANGE)
                     self.history.append({
                         'ts':       time.time(),
                         'time_str': time.strftime("%H:%M:%S"),

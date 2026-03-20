@@ -29,16 +29,21 @@ POOL_START = 10
 POOL_END = 249
 POOL_SIZE = POOL_END - POOL_START + 1  # 240 IPs
 NUM_HOSTS = 6
+# Rishi-2 branch: all zones now use random interval 120-150s
+SHUFFLE_INTERVAL_RANGE = (120, 150)
 ZONES = {
-    'high':   {'hosts': ['h1', 'h2'], 'interval': 120},
-    'medium': {'hosts': ['h3', 'h4'], 'interval': 100},
-    'low':    {'hosts': ['h5', 'h6'], 'interval': 80},
+    'high':   {'hosts': ['h1', 'h2']},
+    'medium': {'hosts': ['h3', 'h4']},
+    'low':    {'hosts': ['h5', 'h6']},
 }
 HOST_ZONE = {'h1': 'high', 'h2': 'high', 'h3': 'medium',
              'h4': 'medium', 'h5': 'low', 'h6': 'low'}
 SCAN_TIME = 18  # seconds per nmap -sn /24
 OVERLAP_WINDOW = 2  # seconds (time.sleep(2) at line 1153)
 SECRET = b'supersecret_test_key'  # line 101 / line 28
+
+def rand_interval():
+    return random.randint(*SHUFFLE_INTERVAL_RANGE)
 
 # ACL from policies.yml and check_connectivity_verbose (line 1346-1375)
 def acl_check(src_zone, dst_zone):
@@ -84,10 +89,10 @@ for h in ['h1','h2','h3','h4','h5','h6']:
     pool.remove(ip)
     host_ip[h] = ip
 
-# next_rotation_at[h] = absolute time of NEXT rotation
+# next_rotation_at[h] = absolute time of NEXT rotation (random 120-150s)
 next_rotation_at = {}
-for h, zone in HOST_ZONE.items():
-    next_rotation_at[h] = float(ZONES[zone]['interval'])
+for h in HOST_ZONE:
+    next_rotation_at[h] = float(rand_interval())
 
 # attacker_known[ip] = True if attacker has seen this IP respond
 attacker_known = {}
@@ -107,8 +112,8 @@ for scan_num in range(1, num_scans + 1):
             host_ip[h] = new_ip
             # Invalidate attacker's knowledge of old IP
             attacker_known.pop(f"172.16.0.{old_ip}", None)
-            # Schedule next rotation
-            next_rotation_at[h] += ZONES[HOST_ZONE[h]]['interval']
+            # Schedule next rotation with NEW random interval
+            next_rotation_at[h] += rand_interval()
 
     # Scan: attacker discovers all currently-assigned IPs
     currently_live = {f"172.16.0.{ip}" for ip in host_ip.values()}
@@ -176,66 +181,29 @@ steady = [r['hosts_found'] for r in scan_results[5:]]
 avg_found = sum(steady) / len(steady)
 avg_yield = avg_found / NUM_HOSTS * 100
 
-# Effort multiplier per zone
-em_low = ZONES['low']['interval'] / SCAN_TIME
-em_med = ZONES['medium']['interval'] / SCAN_TIME
-em_high = ZONES['high']['interval'] / SCAN_TIME
-em_avg = (em_low + em_med + em_high) / 3
+# Effort multiplier: all hosts now use random 120-150s interval
+avg_interval = sum(SHUFFLE_INTERVAL_RANGE) / 2  # 135s average
+em = avg_interval / SCAN_TIME
 
 print(f"\nSimulation steady-state: {avg_found:.1f} hosts valid from previous scan ({avg_yield:.1f}%)")
-print(f"Effort multiplier: LOW={em_low:.1f}x, MED={em_med:.1f}x, HIGH={em_high:.1f}x, AVG={em_avg:.1f}x")
-
-# THEORETICAL calculation matching paper methodology:
-# "After all zones have rotated at least once, how many hosts from a
-# SINGLE scan are still reachable when the attacker tries to use the data?"
-#
-# Key: the scan takes 18s. A host's IP is valid for the remainder of its
-# rotation interval. On average, a host is at a random point in its cycle
-# when scanned. P(host still at same IP when attacker acts at time T after scan):
-#   P = max(0, (interval - T) / interval)  [uniform distribution]
-#
-# If attacker acts immediately after scan (T=0): P=1 for all → 6/6
-# If attacker acts after 30s (next scan):
-#   P_low  = max(0, (80-30)/80)  = 0.625
-#   P_med  = max(0, (100-30)/100) = 0.70
-#   P_high = max(0, (120-30)/120) = 0.75
-#   Expected hosts = 2*0.75 + 2*0.70 + 2*0.625 = 1.50+1.40+1.25 = 4.15
-#
-# But once ALL zones have rotated (after 120s), any scan data older than
-# 80s is guaranteed stale for LOW hosts. The "single scan" metric at
-# steady state asks: do a scan, wait until next rotation fires, how many
-# survive? Since LOW rotates every 80s and scan takes 18s:
-#   On average you catch a LOW host with 40s left → it rotates in 40s
-#   You catch a MED host with 50s left → it rotates in 50s
-#   You catch a HIGH host with 60s left → it rotates in 60s
-# The MAXIMUM time any single result stays valid = the host's interval.
-# After max(80,100,120)=120s, ALL scan data is stale.
-#
-# Paper's measured result: ~1 of 6 at steady state. This is because:
-# - With 20 repeated scans, the attacker accumulates IPs from all scans
-# - At any given moment, the only valid IPs are from the most recent scan
-# - By the time the attacker decides to act on scan N, results are
-#   partially stale. On average ~1 host hasn't rotated yet.
-#
-# The ~1/6 figure comes from: at any random instant, the probability
-# a specific host's IP matches what a scan 30-60s ago found is low.
-# Across many trials this averages to ~1 host being "catchable" per scan.
+print(f"Rotation interval: random {SHUFFLE_INTERVAL_RANGE[0]}-{SHUFFLE_INTERVAL_RANGE[1]}s (avg {avg_interval:.0f}s)")
+print(f"Effort multiplier (avg): {em:.1f}x (attacker must scan {em:.1f}x more often)")
+print(f"Effort multiplier range: {SHUFFLE_INTERVAL_RANGE[0]/SCAN_TIME:.1f}x - {SHUFFLE_INTERVAL_RANGE[1]/SCAN_TIME:.1f}x")
+print(f"Added benefit: attacker CANNOT predict exact rotation time (random per cycle)")
 
 # Monte Carlo: scan once, then check at a random time 20-60s later
+# Each host has a random interval drawn from [120, 150] per cycle
 MC_TRIALS = 10000
 random.seed(12345)
 total_still_valid = 0
 for _ in range(MC_TRIALS):
-    delay = random.uniform(20, 60)  # attacker acts 20-60s after scan
+    delay = random.uniform(20, 60)
     valid = 0
-    for zone_name, zinfo in ZONES.items():
-        n_hosts = len(zinfo['hosts'])
-        interval = zinfo['interval']
-        for _ in range(n_hosts):
-            # Host is at random point in cycle when scanned
-            time_remaining = random.uniform(0, interval)
-            if time_remaining > delay:
-                valid += 1
+    for _ in range(NUM_HOSTS):
+        interval = rand_interval()
+        time_remaining = random.uniform(0, interval)
+        if time_remaining > delay:
+            valid += 1
     total_still_valid += valid
 
 mc_avg = total_still_valid / MC_TRIALS
@@ -243,28 +211,26 @@ mc_yield = mc_avg / NUM_HOSTS * 100
 print(f"\nMonte Carlo (10K trials, act 20-60s after scan):")
 print(f"  Average hosts still reachable: {mc_avg:.1f} / 6 ({mc_yield:.1f}%)")
 
-# Worst case: attacker uses data from 2 scans ago (60s stale)
+# Worst case: data is 60s stale
 total_60s = 0
 for _ in range(MC_TRIALS):
     valid = 0
-    for zone_name, zinfo in ZONES.items():
-        n_hosts = len(zinfo['hosts'])
-        interval = zinfo['interval']
-        for _ in range(n_hosts):
-            time_remaining = random.uniform(0, interval)
-            if time_remaining > 60:
-                valid += 1
+    for _ in range(NUM_HOSTS):
+        interval = rand_interval()
+        time_remaining = random.uniform(0, interval)
+        if time_remaining > 60:
+            valid += 1
     total_60s += valid
 mc_60 = total_60s / MC_TRIALS
 print(f"  If data is 60s stale: {mc_60:.1f} / 6 ({mc_60/6*100:.1f}%)")
 
-# After all zones rotated once (data > 120s old):
-print(f"  If data is >120s old: 0.0 / 6 (0.0%) — all hosts rotated")
+# After max interval (150s), all data guaranteed stale
+print(f"  If data is >150s old: 0.0 / 6 (0.0%) — all hosts rotated")
 
 results['scenario_1'] = {
     'steady_yield': round(avg_yield, 1),
     'reduction': round(100 - avg_yield, 1),
-    'effort_multiplier': round(em_avg, 1),
+    'effort_multiplier': round(em, 1),
     'scan_data': scan_results
 }
 
@@ -281,25 +247,17 @@ print(f"\nACL check (low -> high): {'ALLOW' if allowed else 'DENY'}")
 
 # Even if ACL bypassed: timing analysis
 weaponize_time = 75  # seconds (midpoint of 60-90)
-low_interval = ZONES['low']['interval']  # 80s
-high_interval = ZONES['high']['interval']  # 120s
-
-# h5 (low) rotates at 80s. Attack delivery at t=75s means h5 hasn't rotated yet.
-# h1 (high) rotates at 120s. At t=75s, h1 is still at same IP.
-# But ACL blocks it regardless.
-
-# If ACL is bypassed AND attacker delivers at t=75:
-# IP still valid for both. But ACL is the primary defense.
-# If delivery at t=85 (after h5 rotation at 80s):
-# h5 has new source IP, but DROP rule was on old source IP. Need fresh policy check.
+# Both h5 and h1 now rotate at random 120-150s intervals
 
 trials = 15
 successes = 0
 for trial in range(trials):
     delivery_time = random.uniform(60, 90)
     acl_blocked = not acl_check('low', 'high')  # always True
-    h5_rotated = delivery_time > low_interval
-    h1_rotated = delivery_time > high_interval
+    h5_interval = rand_interval()  # 120-150s
+    h1_interval = rand_interval()  # 120-150s
+    h5_rotated = delivery_time > h5_interval
+    h1_rotated = delivery_time > h1_interval
 
     if acl_blocked:
         successes += 0  # blocked
@@ -311,7 +269,7 @@ for trial in range(trials):
 success_rate = successes / trials * 100
 print(f"Simulated {trials} attempts: {successes} succeeded ({success_rate:.1f}%)")
 print(f"Defense Layer 1 (ACL): BLOCKS 100% — low->high denied at line 1367-1372")
-print(f"Defense Layer 2 (Rotation): h5 rotates at {low_interval}s, h1 at {high_interval}s")
+print(f"Defense Layer 2 (Rotation): all hosts rotate at random 120-150s")
 print(f"Both defenses must fail simultaneously for attack to succeed")
 
 results['scenario_2'] = {
@@ -330,40 +288,41 @@ print("=" * 70)
 allowed = acl_check('medium', 'medium')
 print(f"\nACL check (medium -> medium): {'ALLOW' if allowed else 'DENY'}")
 
-med_interval = ZONES['medium']['interval']  # 100s
+# All hosts now use random 120-150s interval
 trials = 1000
 transfer_sizes_mb = [1, 50, 500, 2000]
 bandwidth_mbps = 100
+avg_interval = sum(SHUFFLE_INTERVAL_RANGE) / 2  # 135s
 
-print(f"\n{'File Size':>10} | {'Xfer Time':>9} | {'Window':>6} | {'Success%':>8} | {'With Retry':>10}")
-print("-" * 60)
+print(f"\nRotation interval: random {SHUFFLE_INTERVAL_RANGE[0]}-{SHUFFLE_INTERVAL_RANGE[1]}s (avg {avg_interval:.0f}s)")
+print(f"\n{'File Size':>10} | {'Xfer Time':>9} | {'Avg Win':>7} | {'Success%':>8} | {'With Retry':>10}")
+print("-" * 62)
 
+last_pct = 0
 for size_mb in transfer_sizes_mb:
     xfer_time = size_mb * 8 / bandwidth_mbps  # seconds
     successes = 0
     retry_successes = 0
     for _ in range(trials):
-        # Attacker discovers IP at random point in cycle
-        time_remaining = random.uniform(0, med_interval)
+        host_interval = rand_interval()  # random 120-150 per cycle
+        time_remaining = random.uniform(0, host_interval)
         if xfer_time <= time_remaining:
             successes += 1
             retry_successes += 1
         else:
-            # With retry: reconnect after rotation (2s DNS + 2s connect)
-            remaining_data = size_mb - (time_remaining * bandwidth_mbps / 8)
-            cycles_needed = math.ceil(remaining_data / (med_interval * bandwidth_mbps / 8))
             retry_successes += 1  # eventually succeeds with retries
 
     pct = successes / trials * 100
+    last_pct = pct
     retry_pct = retry_successes / trials * 100
-    avg_window = med_interval / 2
-    print(f"{size_mb:>8}MB | {xfer_time:>8.1f}s | {avg_window:>5.0f}s | {pct:>7.1f}% | {retry_pct:>9.1f}%")
+    avg_window = avg_interval / 2
+    print(f"{size_mb:>8}MB | {xfer_time:>8.1f}s | {avg_window:>6.0f}s | {pct:>7.1f}% | {retry_pct:>9.1f}%")
 
 results['scenario_3'] = {
     'acl_allows': True,
-    'single_attempt_500MB': round(successes/trials*100, 1),
+    'single_attempt_500MB': round(last_pct, 1),
     'with_retry': 100.0,
-    'rotation_interval': med_interval
+    'rotation_interval': f'random {SHUFFLE_INTERVAL_RANGE[0]}-{SHUFFLE_INTERVAL_RANGE[1]}s'
 }
 
 # ============================================================
@@ -653,7 +612,7 @@ print("FINAL SUMMARY")
 print("=" * 70)
 
 summary = [
-    (1, "Continuous Recon", "Yes",     f"{results['scenario_1']['steady_yield']}% yield", "Host count estimable over time"),
+    (1, "Continuous Recon", "Yes",     f"{results['scenario_1']['steady_yield']}% yield", "Unpredictable timing (120-150s random)"),
     (2, "Ransomware LOW→HIGH", "Yes",  "0%", "API reveals target IP (no auth)"),
     (3, "Intra-Zone Lateral", "Partial", "60-80% (100% retry)", "ACL allows intra-zone"),
     (4, "Topology Agent RCE", "No",    "100%", "Zero auth, root exec, port 8888"),

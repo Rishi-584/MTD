@@ -1,8 +1,8 @@
 {
   "scenario_1": {
-    "steady_yield": 71.1,
-    "reduction": 28.9,
-    "effort_multiplier": 5.6,
+    "steady_yield": 76.7,
+    "reduction": 23.3,
+    "effort_multiplier": 7.5,
     "scan_data": [
       {
         "scan": 1,
@@ -25,20 +25,20 @@
       {
         "scan": 4,
         "time": 90,
-        "hosts_found": 2,
-        "yield_pct": 33.3
+        "hosts_found": 6,
+        "yield_pct": 100.0
       },
       {
         "scan": 5,
         "time": 120,
-        "hosts_found": 4,
-        "yield_pct": 66.7
+        "hosts_found": 3,
+        "yield_pct": 50.0
       },
       {
         "scan": 6,
         "time": 150,
-        "hosts_found": 4,
-        "yield_pct": 66.7
+        "hosts_found": 3,
+        "yield_pct": 50.0
       },
       {
         "scan": 7,
@@ -49,50 +49,50 @@
       {
         "scan": 8,
         "time": 210,
-        "hosts_found": 4,
-        "yield_pct": 66.7
+        "hosts_found": 6,
+        "yield_pct": 100.0
       },
       {
         "scan": 9,
         "time": 240,
-        "hosts_found": 2,
-        "yield_pct": 33.3
+        "hosts_found": 5,
+        "yield_pct": 83.3
       },
       {
         "scan": 10,
         "time": 270,
-        "hosts_found": 6,
-        "yield_pct": 100.0
+        "hosts_found": 1,
+        "yield_pct": 16.7
       },
       {
         "scan": 11,
         "time": 300,
-        "hosts_found": 4,
-        "yield_pct": 66.7
+        "hosts_found": 6,
+        "yield_pct": 100.0
       },
       {
         "scan": 12,
         "time": 330,
-        "hosts_found": 4,
-        "yield_pct": 66.7
+        "hosts_found": 6,
+        "yield_pct": 100.0
       },
       {
         "scan": 13,
         "time": 360,
-        "hosts_found": 4,
-        "yield_pct": 66.7
+        "hosts_found": 6,
+        "yield_pct": 100.0
       },
       {
         "scan": 14,
         "time": 390,
-        "hosts_found": 2,
-        "yield_pct": 33.3
+        "hosts_found": 1,
+        "yield_pct": 16.7
       },
       {
         "scan": 15,
         "time": 420,
-        "hosts_found": 6,
-        "yield_pct": 100.0
+        "hosts_found": 5,
+        "yield_pct": 83.3
       },
       {
         "scan": 16,
@@ -103,8 +103,8 @@
       {
         "scan": 17,
         "time": 480,
-        "hosts_found": 2,
-        "yield_pct": 33.3
+        "hosts_found": 6,
+        "yield_pct": 100.0
       },
       {
         "scan": 18,
@@ -115,14 +115,14 @@
       {
         "scan": 19,
         "time": 540,
-        "hosts_found": 6,
-        "yield_pct": 100.0
+        "hosts_found": 2,
+        "yield_pct": 33.3
       },
       {
         "scan": 20,
         "time": 570,
-        "hosts_found": 4,
-        "yield_pct": 66.7
+        "hosts_found": 6,
+        "yield_pct": 100.0
       }
     ]
   },
@@ -135,7 +135,7 @@
     "acl_allows": true,
     "single_attempt_500MB": 0.0,
     "with_retry": 100.0,
-    "rotation_interval": 100
+    "rotation_interval": "random 120-150s"
   },
   "scenario_4": {
     "auth": "none",

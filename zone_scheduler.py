@@ -2,26 +2,30 @@ import requests
 import time
 import json
 import sys
+import random
 
 BASE = "http://127.0.0.1:8000"
 
 # -------------------------------
 # Zone Configuration
+# Random interval between 120-150s per cycle
 # -------------------------------
+SHUFFLE_INTERVAL_RANGE = (120, 150)
+
 ZONES = {
     "high": {
         "hosts": ["h1", "h2"],
-        "interval": 40,
+        "interval": random.randint(*SHUFFLE_INTERVAL_RANGE),
         "last_run": 0
     },
     "medium": {
         "hosts": ["h3", "h4"],
-        "interval": 20,
+        "interval": random.randint(*SHUFFLE_INTERVAL_RANGE),
         "last_run": 0
     },
     "low": {
         "hosts": ["h5", "h6"],
-        "interval": 10,
+        "interval": random.randint(*SHUFFLE_INTERVAL_RANGE),
         "last_run": 0
     }
 }
@@ -77,6 +81,7 @@ def scheduler():
 
                     shuffle_id = resp.get("shuffle_id", "N/A")
                     zone["last_run"] = now
+                    zone["interval"] = random.randint(*SHUFFLE_INTERVAL_RANGE)
 
                     logs = safe_get("/logs")[-len(zone["hosts"]):]
 
