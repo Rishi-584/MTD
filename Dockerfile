@@ -25,5 +25,8 @@ RUN pip install -r requirements.txt
 COPY . /app
 ENV PYTHONPATH=/app
 
+RUN useradd -r -u 1001 appuser && \
+    chown -R appuser:appuser /app
+USER appuser
 CMD ["ryu-manager", "--ofp-tcp-listen-port", "6653", "--wsapi-host", "0.0.0.0", "mtd_controller.py"]
 
