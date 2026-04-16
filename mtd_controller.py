@@ -333,6 +333,7 @@ class SimpleRESTHandler(BaseHTTPRequestHandler):
                 r = requests.post('http://127.0.0.1:8888/exec',
                                   json={'host': src, 'cmd': f"ping -c 1 -W 2 {dst_public}"},
                                   timeout=6)
+                r.raise_for_status()
                 ping_out = r.json().get('output', '') if r.status_code == 200 else ''
                 if '0% packet loss' in ping_out:
                     trace.append({'step': 'NET', 'msg': 'Connectivity established',

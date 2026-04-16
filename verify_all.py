@@ -11,6 +11,7 @@ def test_system():
     # 1. Check Status (Is Controller Up?)
     try:
         r = requests.get(f"{BASE}/status", timeout=2)
+        r.raise_for_status()
         print("[PASS] Controller is ONLINE.")
     except Exception as e:
         print(f"[FAIL] Controller unreachable: {e}")
@@ -38,6 +39,7 @@ def test_system():
 
     # 4. Check Initial Status (History should be empty or have init events)
     r = requests.get(f"{BASE}/status")
+    r.raise_for_status()
     status = r.json()
     if 'history' in status:
          print(f"[PASS] History Field Present. Count: {len(status['history'])}")
@@ -57,6 +59,7 @@ def test_system():
     # 6. Verify History Update
     print("\n>>> Verifying History Log...")
     r = requests.get(f"{BASE}/status")
+    r.raise_for_status()
     final_status = r.json()
     history = final_status.get('history', [])
     

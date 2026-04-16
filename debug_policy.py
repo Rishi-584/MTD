@@ -64,6 +64,7 @@ def test_via_api(src, dst):
             json={"src": src, "dst": dst, "payload": "test"},
             timeout=10
         )
+        response.raise_for_status()
         data = response.json()
         status = data.get('status')
 

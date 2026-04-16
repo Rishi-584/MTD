@@ -10,6 +10,7 @@ def log(msg):
 def test_ping(src, dst, expect_success):
     log(f"Testing Ping: {src} -> {dst} (Expect: {'PASS' if expect_success else 'FAIL'})")
     r = requests.post(f"{BASE}/sim/test_ping", json={'src_host': src, 'dst_host': dst})
+    r.raise_for_status()
     res = r.json()
     success = (res['status'] == 'success')
     
