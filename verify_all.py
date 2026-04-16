@@ -11,6 +11,7 @@ def test_system():
     # 1. Check Status (Is Controller Up?)
     try:
         r = requests.get(f"{BASE}/status", timeout=2)
+        r.raise_for_status()
         print("[PASS] Controller is ONLINE.")
     except Exception as e:
         print(f"[FAIL] Controller unreachable: {e}")
