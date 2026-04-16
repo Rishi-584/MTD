@@ -59,6 +59,7 @@ def test_system():
     # 6. Verify History Update
     print("\n>>> Verifying History Log...")
     r = requests.get(f"{BASE}/status")
+    r.raise_for_status()
     final_status = r.json()
     history = final_status.get('history', [])
     
